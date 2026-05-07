@@ -197,20 +197,11 @@
 
   canvas { display: block; width: 100% !important; }
 
-  /* アノテーション */
-  .annotation-bar {
-    background: #FEF9F0;
-    border: 1px solid #F5DEB3;
-    border-left: 3px solid var(--accent);
-    border-radius: 0 6px 6px 0;
-    padding: 14px 20px;
-    margin-bottom: 40px;
-    font-size: 13px;
-    color: var(--text-primary);
-    line-height: 1.6;
+  /* テーブルスクロール */
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
-
-  .annotation-bar strong { font-weight: 500; color: var(--accent); }
 
   /* データテーブル */
   .table-section { margin-bottom: 40px; }
@@ -350,14 +341,9 @@
     <canvas id="mainChart" height="400"></canvas>
   </div>
 
-  <div class="annotation-bar">
-    <strong>注目：</strong>長崎県は2022年（▲287,652人）を底に3年連続で改善。
-    2023年以降の県外転入超過への転換（長崎市オープンデータ）と整合しており、
-    移住・定住施策の効果が数値に表れ始めている可能性があります。
-  </div>
-
   <div class="table-section">
     <p class="section-label">主要年の数値データ</p>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
     <table class="data-table">
       <thead>
         <tr>
@@ -367,11 +353,15 @@
           <th>福岡県</th>
           <th>佐賀県</th>
           <th>熊本県</th>
+          <th>大分県</th>
+          <th>宮崎県</th>
           <th>鹿児島県</th>
+          <th>沖縄県</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
+    </div>
   </div>
 
 </main>
@@ -542,7 +532,10 @@ tableYears.forEach(y => {
     <td class="${fukClass}">${fmt(DATA.fukuoka[i])}</td>
     <td>${fmt(DATA.saga[i])}</td>
     <td>${fmt(DATA.kumamoto[i])}</td>
+    <td>${fmt(DATA.oita[i])}</td>
+    <td>${fmt(DATA.miyazaki[i])}</td>
     <td>${fmt(DATA.kagoshima[i])}</td>
+    <td>${fmt(DATA.okinawa[i])}</td>
   </tr>`;
 });
 </script>
