@@ -121,6 +121,7 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
     <button class="tab-btn" onclick="switchTab('tab4',this)">③-② 県内転出入</button>
     <button class="tab-btn" onclick="switchTab('tab5',this)">③-③ 自然増減</button>
     <button class="tab-btn" onclick="switchTab('tab6',this)">④ 外国人人口</button>
+    <button class="tab-btn" onclick="switchTab('tab7',this)">⑤ 年齢別転入超過</button>
   </div>
 
   <!-- タブ1: 月次転入・転出 -->
@@ -149,7 +150,7 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
     <div class="insight red">
       <strong>グラフの見方：</strong>このグラフは「年間の人口増減」を2つの要因に分解しています。<br>
       <strong>自然増減</strong>（赤棒）＝ 出生者数 − 死亡者数　→ 詳細は「⑤ 自然増減（月次）」タブ<br>
-      <strong>社会増減</strong>（青棒）＝ 転入者数 − 転出者数　→ 内訳は「③ 県外」「④ 県内」タブ<br>
+      <strong>社会増減</strong>（青棒）＝ 転入者数 − 転出者数　→ 内訳は下の第2グラフ・および「③ 県外」「④ 県内」タブ<br>
       <strong>重要な発見：</strong>2025年に社会増減がプラスに転換したにもかかわらず人口が減り続けているのは、死亡者数が出生者数を年間約4,270人上回る<strong>自然減が主因</strong>であるため。
     </div>
     <div class="chart-card">
@@ -162,6 +163,27 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-line" style="background:#1A1916;height:3px"></div><span class="leg-type">折れ線</span>人口増減（合計）</div>
       </div>
     </div>
+
+    <div class="insight" style="border-left-color:var(--purple);background:#F5EEF8">
+      <strong>2025年の社会増減＋728人の内訳：</strong><br>
+      県外転入超過：<strong style="color:var(--green)">＋765人</strong>　
+      県内転出超過：<strong style="color:var(--red)">▲37人</strong>　
+      小計（国内）：<strong>＋728人</strong><br>
+      ※ただしe-Stat（国内移動のみ）では▲1,389人。この差（約＋2,117人）は<strong>外国人の新規入国・転入</strong>によるものと推計されます。外国人人口は2022年末3,607人→2025年末5,487人と3年間で＋1,880人増加しており、社会増減のプラス転換に大きく寄与しています。
+    </div>
+
+    <div class="chart-card">
+      <p class="chart-label">年次 社会増減の内訳（県外・県内・外国人寄与）</p>
+      <p class="chart-unit">単位：人　※外国人寄与はBODIK社会増減とe-Stat国内移動の差から推計</p>
+      <canvas id="chart2b" height="260"></canvas>
+      <div class="legend">
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(44,123,182,0.75)"></div><span class="leg-type">棒</span>県外転入超過</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(212,160,23,0.75)"></div><span class="leg-type">棒</span>県内転入超過</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(108,52,131,0.75)"></div><span class="leg-type">棒</span>外国人寄与（推計）</div>
+        <div class="legend-item"><div class="leg-line" style="background:#1A1916;height:3px"></div><span class="leg-type">折れ線</span>社会増減（合計）</div>
+      </div>
+    </div>
+
     <div class="tbl-wrap">
       <table id="tbl2"></table>
     </div>
@@ -259,6 +281,38 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
     </div>
     <div class="tbl-wrap">
       <table id="tbl6"></table>
+    </div>
+  </div>
+  <!-- タブ7: 年齢別転入超過 -->
+  <div id="tab7" class="tab-panel">
+    <div class="insight" style="border-left-color:#2C7BB6;background:#EBF5FB">
+      <strong>出典補足：</strong>このタブのデータはe-Stat「住民基本台帳人口移動報告」（国内市区町村間移動のみ）です。国外からの転入（外国人新規入国など）は含まれないため、BODIKの数値とは異なります。傾向・構造の把握に活用してください。
+    </div>
+    <div class="insight" style="border-left-color:var(--green);background:#EAF4F0">
+      <strong>重要な発見：</strong>①<strong>30〜34歳の転出が2024→2025年で▲140人減少</strong>（最大の改善）。子育て世代の定着が進んでいる。②<strong>20〜29歳の転出超過が4年連続で縮小</strong>。③<strong>60〜64歳が4年連続で転入超過</strong>（2025年は過去最高の＋50人）。定年前後のUターン移住が着実に増加している。
+    </div>
+    <div class="chart-card">
+      <p class="chart-label">年齢（5歳階級）別 転入超過数の推移（2022〜2025年）</p>
+      <p class="chart-unit">単位：人　出典：e-Stat 住民基本台帳人口移動報告（国内移動）</p>
+      <canvas id="chart7a" height="340"></canvas>
+      <div class="legend">
+        <div class="legend-item"><div class="leg-line" style="background:#888;opacity:.5"></div><span class="leg-type">折れ線</span>2022年</div>
+        <div class="legend-item"><div class="leg-line" style="background:#888;opacity:.7"></div><span class="leg-type">折れ線</span>2023年</div>
+        <div class="legend-item"><div class="leg-line" style="background:var(--blue)"></div><span class="leg-type">折れ線</span>2024年</div>
+        <div class="legend-item"><div class="leg-line" style="background:var(--red);height:3px"></div><span class="leg-type">折れ線</span>2025年（太線）</div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <p class="chart-label">2025年 転入・転出の年齢別比較（棒グラフ）</p>
+      <p class="chart-unit">単位：人　プラス＝転入超過、マイナス＝転出超過</p>
+      <canvas id="chart7b" height="300"></canvas>
+      <div class="legend">
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(44,123,182,0.7)"></div><span class="leg-type">棒</span>転入（2025）</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.5)"></div><span class="leg-type">棒</span>転出（2025）</div>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table id="tbl7"></table>
     </div>
   </div>
 
@@ -444,6 +498,60 @@ const baseOpts = {
     html+=`<tr><td>${yr}年</td><td>${b.toLocaleString()}人</td><td>${d.toLocaleString()}人</td><td class="neg">▲${Math.abs(nat[i]).toLocaleString()}人</td><td class="${soc[i]>=0?'pos':'neg'}">${fmtAbs(soc[i])}人</td><td class="neg">▲${Math.abs(pop[i]).toLocaleString()}人</td></tr>`;
   });
   tbl.innerHTML = html+'</tbody>';
+
+  // ===== チャート2b: 社会増減の内訳 =====
+  const ctx2b = document.getElementById('chart2b').getContext('2d');
+  // 県外超過・県内超過・外国人寄与（推計）
+  const outExcess = completeYears.map(yr=>{
+    const oi=getYearTotal(RAW.oi,yr),oo=getYearTotal(RAW.oo,yr);
+    return oi-oo;
+  });
+  const inExcess = completeYears.map(yr=>{
+    const ii=getYearTotal(RAW.ii,yr),io=getYearTotal(RAW.io,yr);
+    return ii-io;
+  });
+  // e-Stat国内移動のみの社会増減（実測値）
+  const estatSoc = {2022:-2308, 2023:-2316, 2024:-1794, 2025:-1389};
+  // 外国人寄与 = BODIK社会増減 - e-Stat国内移動
+  const fgContrib = completeYears.map((yr,i) => soc[i] - estatSoc[yr]);
+
+  new Chart(ctx2b,{
+    type:'bar',
+    data:{
+      labels: completeYears.map(y=>y+'年'),
+      datasets:[
+        {type:'bar', label:'県外転入超過', data:outExcess, backgroundColor:'rgba(44,123,182,0.75)', stack:'s', order:1},
+        {type:'bar', label:'県内転入超過', data:inExcess,  backgroundColor:'rgba(212,160,23,0.75)',  stack:'s', order:1},
+        {type:'bar', label:'外国人寄与（推計）', data:fgContrib, backgroundColor:'rgba(108,52,131,0.75)', stack:'s', order:1},
+        {type:'line',label:'社会増減（合計）', data:soc, borderColor:'#1A1916', borderWidth:2.5,
+         pointRadius:5, pointBackgroundColor:'#1A1916', tension:.2, fill:false, order:0},
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      interaction:{mode:'index', intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
+          titleColor:'#1A1916', bodyColor:'#6B6860', padding:12,
+          titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
+          bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
+          callbacks:{
+            label: item => `${item.dataset.label}：${item.raw>=0?'+':'▲'}${Math.abs(item.raw).toLocaleString()}人`,
+            labelColor: item=>({backgroundColor:item.dataset.borderColor||item.dataset.backgroundColor,borderColor:item.dataset.borderColor||item.dataset.backgroundColor}),
+          }
+        }
+      },
+      scales:{
+        x:{ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:12}},
+           grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8'}},
+        y:{stacked:true,
+           ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:11},callback:yTickCallback},
+           grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8',dash:[4,4]}}
+      }
+    }
+  });
 })();
 
 // ===== チャート3: 県外転入・転出年次 =====
@@ -633,6 +741,128 @@ const baseOpts = {
     html+=`<tr><td>${yr}年末</td><td class="bold">${t.toLocaleString()}人</td><td>${diff!==null?`<span class="pos">+${diff.toLocaleString()}人</span>`:'—'}</td><td>${FG[yr].china.toLocaleString()}</td><td>${FG[yr].phil.toLocaleString()}</td><td>${FG[yr].nepal.toLocaleString()}</td><td>${FG[yr].viet.toLocaleString()}</td><td>${FG[yr].indo.toLocaleString()}</td></tr>`;
   });
   tbl.innerHTML=html+'</tbody>';
+})();
+
+// ===== チャート7: 年齢別転入超過 =====
+(function(){
+  const AGE_LABELS = ['0-4歳','5-9歳','10-14歳','15-19歳','20-24歳','25-29歳','30-34歳',
+                      '35-39歳','40-44歳','45-49歳','50-54歳','55-59歳','60-64歳','65-69歳',
+                      '70-74歳','75-79歳','80-84歳','85-89歳','90歳以上'];
+
+  // 転入超過（インデックス1-19、総数除く）
+  const EX = {
+    2022: [-105,-62,-94,-347,-535,-462,-275,-94,-98,-85,-27,-8,5,26,-23,-23,-38,-31,-32],
+    2023: [-252,-138,-70,-248,-480,-454,-287,-164,-84,-36,-66,22,37,-21,-4,-15,-9,-32,-15],
+    2024: [-81,-73,-38,-167,-442,-485,-210,-72,-44,-15,-58,-15,14,4,-14,-6,-22,-42,-28],
+    2025: [-15,-51,-11,-186,-372,-365,-118,-109,-76,-42,-29,-4,50,37,-26,-8,-4,-47,-13],
+  };
+  // 転入（2025）
+  const IN_2025  = [518,248,163,827,2102,1713,1092,758,522,471,492,432,304,192,129,118,96,76,79];
+  // 転出（2025）
+  const OUT_2025 = [533,299,174,1013,2474,2078,1210,867,598,513,521,436,254,155,155,126,100,123,92];
+
+  // チャート7a：折れ線（年次比較）
+  const ctx7a = document.getElementById('chart7a').getContext('2d');
+  new Chart(ctx7a, {
+    type: 'line',
+    data: {
+      labels: AGE_LABELS,
+      datasets: [
+        {label:'2022年', data:EX[2022], borderColor:'rgba(150,150,150,0.4)', borderWidth:1.5, pointRadius:2, pointHoverRadius:4, tension:.3, fill:false},
+        {label:'2023年', data:EX[2023], borderColor:'rgba(150,150,150,0.65)', borderWidth:1.5, pointRadius:2, pointHoverRadius:4, tension:.3, fill:false},
+        {label:'2024年', data:EX[2024], borderColor:'#2C7BB6', borderWidth:2, pointRadius:3, pointHoverRadius:5, tension:.3, fill:false},
+        {label:'2025年', data:EX[2025], borderColor:'#C0392B', borderWidth:3.5, pointRadius:4, pointHoverRadius:6, tension:.3, fill:false},
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      interaction:{mode:'index', intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
+          titleColor:'#1A1916', bodyColor:'#6B6860', padding:12,
+          titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
+          bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
+          callbacks:{
+            label: item => `${item.dataset.label}：${item.raw >= 0 ? '+' : '▲'}${Math.abs(item.raw).toLocaleString()}人`,
+            labelColor: item => ({backgroundColor: item.dataset.borderColor, borderColor: item.dataset.borderColor}),
+          }
+        },
+        annotation: {
+          annotations: {
+            zeroline: {type:'line', yMin:0, yMax:0, borderColor:'rgba(0,0,0,0.2)', borderWidth:1}
+          }
+        }
+      },
+      scales:{
+        x:{ticks:{color:'#9E9C94', font:{family:"'Noto Sans JP',sans-serif", size:10}, maxRotation:45},
+           grid:{color:'#EDEDEA', lineWidth:.5}, border:{color:'#E2E0D8'}},
+        y:{ticks:{color:'#9E9C94', font:{family:"'Noto Sans JP',sans-serif", size:11},
+             callback: v => (v>=0?'+':'▲')+Math.abs(v).toLocaleString()},
+           grid:{color:'#EDEDEA', lineWidth:.5}, border:{color:'#E2E0D8', dash:[4,4]}}
+      }
+    }
+  });
+
+  // チャート7b：転入・転出の棒グラフ（2025）
+  const ctx7b = document.getElementById('chart7b').getContext('2d');
+  new Chart(ctx7b, {
+    type: 'bar',
+    data: {
+      labels: AGE_LABELS,
+      datasets: [
+        {label:'転入（2025）', data:IN_2025, backgroundColor:'rgba(44,123,182,0.7)', order:1},
+        {label:'転出（2025）', data:OUT_2025.map(v=>-v), backgroundColor:'rgba(192,57,43,0.5)', order:1},
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      interaction:{mode:'index', intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
+          titleColor:'#1A1916', bodyColor:'#6B6860', padding:12,
+          titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
+          bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
+          callbacks:{
+            label: item => {
+              const v = item.raw;
+              const label = item.dataset.label;
+              return `${label}：${Math.abs(v).toLocaleString()}人`;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{ticks:{color:'#9E9C94', font:{size:10}, maxRotation:45},
+           grid:{color:'#EDEDEA', lineWidth:.5}},
+        y:{ticks:{color:'#9E9C94', font:{size:11},
+             callback: v => (v>=0?'+':'▲')+Math.abs(v).toLocaleString()},
+           grid:{color:'#EDEDEA', lineWidth:.5}}
+      }
+    }
+  });
+
+  // テーブル
+  const tbl = document.getElementById('tbl7');
+  let html = '<thead><tr><th>年齢層</th><th>転入超過 2022</th><th>転入超過 2023</th><th>転入超過 2024</th><th>転入超過 2025</th><th>24→25変化</th></tr></thead><tbody>';
+  AGE_LABELS.forEach((age, i) => {
+    const v22=EX[2022][i], v23=EX[2023][i], v24=EX[2024][i], v25=EX[2025][i];
+    const diff = v25 - v24;
+    const fmtEx = v => v >= 0
+      ? `<span class="pos">+${v.toLocaleString()}人</span>`
+      : `<span class="neg">▲${Math.abs(v).toLocaleString()}人</span>`;
+    const fmtDiff = v => v > 0
+      ? `<span class="pos">+${v.toLocaleString()}人 ↑</span>`
+      : v < 0
+      ? `<span class="neg">▲${Math.abs(v).toLocaleString()}人 ↓</span>`
+      : '±0';
+    const rowBg = (age === '60-64歳' || age === '65-69歳') ? ' style="background:#F0FAF4"' : '';
+    html += `<tr${rowBg}><td>${age}</td><td>${fmtEx(v22)}</td><td>${fmtEx(v23)}</td><td>${fmtEx(v24)}</td><td>${fmtEx(v25)}</td><td>${fmtDiff(diff)}</td></tr>`;
+  });
+  tbl.innerHTML = html + '</tbody>';
 })();
 
 // ===== タブ切り替え =====
