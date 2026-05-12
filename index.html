@@ -165,22 +165,23 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
     </div>
 
     <div class="insight" style="border-left-color:var(--purple);background:#F5EEF8">
-      <strong>2025年の社会増減＋728人の内訳：</strong><br>
-      県外転入超過：<strong style="color:var(--green)">＋765人</strong>　
-      県内転出超過：<strong style="color:var(--red)">▲37人</strong>　
-      小計（国内）：<strong>＋728人</strong><br>
-      ※ただしe-Stat（国内移動のみ）では▲1,389人。この差（約＋2,117人）は<strong>外国人の新規入国・転入</strong>によるものと推計されます。外国人人口は2022年末3,607人→2025年末5,487人と3年間で＋1,880人増加しており、社会増減のプラス転換に大きく寄与しています。
+      <strong>2025年の社会増減＋728人の内訳と要因：</strong><br>
+      e-Stat（国内移動）では▲1,389人の転出超過。しかしBODIK集計では＋728人の転入超過。<br>
+      この差（約＋2,117人）は<strong>外国人の新規入国・転入</strong>によるものと推計されます。<br>
+      <strong style="color:#C0392B">▶ 2025年の転入超過転換は、外国人流入が最大の要因。</strong>
+      日本人の国内移動では依然として転出超過が続いています。<br>
+      <small>※長崎県の外国人労働者数は2024年10月末時点で11,096人（前年比＋28.1%・過去最高）。スタジアムシティ開業による専門的・技術的分野の外国人雇用が40.8%増と急増（長崎労働局）。</small>
     </div>
 
     <div class="chart-card">
-      <p class="chart-label">年次 社会増減の内訳（県外・県内・外国人寄与）</p>
-      <p class="chart-unit">単位：人　※外国人寄与はBODIK社会増減とe-Stat国内移動の差から推計</p>
-      <canvas id="chart2b" height="260"></canvas>
+      <p class="chart-label">年次 社会増減の内訳（年ごとに「転入」「転出」「差」の3本表示）</p>
+      <p class="chart-unit">単位：人　※e-Stat＝国内移動のみ　外国人寄与はBODIK社会増減とe-Statの差から推計</p>
+      <canvas id="chart2b" height="300"></canvas>
       <div class="legend">
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(44,123,182,0.75)"></div><span class="leg-type">棒</span>県外転入超過</div>
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(212,160,23,0.75)"></div><span class="leg-type">棒</span>県内転入超過</div>
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(108,52,131,0.75)"></div><span class="leg-type">棒</span>外国人寄与（推計）</div>
-        <div class="legend-item"><div class="leg-line" style="background:#1A1916;height:3px"></div><span class="leg-type">折れ線</span>社会増減（合計）</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(44,123,182,0.7)"></div><span class="leg-type">棒</span>日本人国内転入（e-Stat）</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(108,52,131,0.7)"></div><span class="leg-type">棒</span>外国人転入寄与（推計）</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.5)"></div><span class="leg-type">棒</span>日本人国内転出（e-Stat）</div>
+        <div class="legend-item"><div class="leg-bar" style="background:rgba(30,132,73,0.7)"></div><span class="leg-type">棒</span>差（緑＝転入超過・赤＝転出超過）</div>
       </div>
     </div>
 
@@ -499,32 +500,111 @@ const baseOpts = {
   });
   tbl.innerHTML = html+'</tbody>';
 
-  // ===== チャート2b: 社会増減の内訳 =====
+  // ===== チャート2b: 社会増減の内訳（グループ×積み上げ棒グラフ）=====
   const ctx2b = document.getElementById('chart2b').getContext('2d');
-  // 県外超過・県内超過・外国人寄与（推計）
-  const outExcess = completeYears.map(yr=>{
+
+  const CY = [2022,2023,2024,2025];
+
+  // e-Stat国内移動（日本人）
+  const estatIn  = {2022:6218, 2023:5993, 2024:6928, 2025:7193};
+  const estatOut = {2022:8526, 2023:8309, 2024:8722, 2025:8582};
+  const estatDiff = CY.map(yr => estatIn[yr] - estatOut[yr]);
+
+  // BODIK社会増減
+  const bodikSoc = CY.map(yr=>{
     const oi=getYearTotal(RAW.oi,yr),oo=getYearTotal(RAW.oo,yr);
-    return oi-oo;
-  });
-  const inExcess = completeYears.map(yr=>{
     const ii=getYearTotal(RAW.ii,yr),io=getYearTotal(RAW.io,yr);
-    return ii-io;
+    return (oi-oo)+(ii-io);
   });
-  // e-Stat国内移動のみの社会増減（実測値）
-  const estatSoc = {2022:-2308, 2023:-2316, 2024:-1794, 2025:-1389};
-  // 外国人寄与 = BODIK社会増減 - e-Stat国内移動
-  const fgContrib = completeYears.map((yr,i) => soc[i] - estatSoc[yr]);
+
+  // 外国人寄与推計 = BODIK社会増減 - e-Stat国内差
+  const fgContrib = CY.map((yr,i) => bodikSoc[i] - estatDiff[i]);
+
+  // x軸: 2022転入, 2022転出, 2022差, (空), 2023転入...
+  // グループ間に空白を入れる
+  const labels2b = [];
+  CY.forEach(yr => {
+    labels2b.push(`${yr}転入`, `${yr}転出`, `${yr}差`, '');
+  });
+  // 最後の空白を除く
+  labels2b.pop();
+
+  // 各データセットの値を構築（グループ×3 + 空白1）
+  function makeData(valFn) {
+    const d = [];
+    CY.forEach((yr,i) => {
+      const [vin, vout, vdiff] = valFn(yr, i);
+      d.push(vin, vout, vdiff, null);
+    });
+    d.pop();
+    return d;
+  }
+
+  // 日本人国内転入（青）
+  const d_jIn  = makeData(yr => [estatIn[yr], 0, Math.max(estatDiff[CY.indexOf(yr)],0), null]);
+  // 外国人転入寄与（紫）- 転入と差の棒にのせる
+  const d_fIn  = makeData((yr,i) => [Math.max(fgContrib[i],0), 0, Math.max(fgContrib[i],0), null]);
+  // 日本人国内転出（赤）
+  const d_jOut = makeData(yr => [0, estatOut[yr], 0, null]);
+  // 外国人転出寄与（薄赤）
+  const d_fOut = makeData((yr,i) => [0, Math.max(-fgContrib[i],0), 0, null]);
+  // 差のマイナス部分（赤）
+  const d_neg  = makeData((yr,i) => [0, 0, Math.abs(Math.min(bodikSoc[i],0)), null]);
+
+  // 年区切り・ラベルプラグイン
+  const divPlugin2b = {
+    id:'div2b',
+    afterDraw(chart){
+      const {ctx:c, chartArea:{top,bottom}, scales:{x}} = chart;
+      // 区切り線（各グループの後の空白位置）
+      [3,7,11].forEach(idx=>{
+        if(idx < labels.length){
+          const xp = x.getPixelForValue(idx-0.5);
+          c.save();c.strokeStyle='rgba(0,0,0,0.12)';c.lineWidth=1.5;
+          c.setLineDash([]);
+          c.beginPath();c.moveTo(xp,top);c.lineTo(xp,bottom);c.stroke();c.restore();
+        }
+      });
+      // 年ラベル（各グループ中央）
+      [[1,'2022年'],[5,'2023年'],[9,'2024年'],[13,'2025年']].forEach(([idx,yr])=>{
+        if(idx < labels.length + 1){
+          const xp = x.getPixelForValue(idx);
+          c.save();c.font='bold 12px "Noto Sans JP"';
+          c.fillStyle='rgba(0,0,0,0.55)';c.textAlign='center';
+          c.fillText(yr, xp, top-10);c.restore();
+        }
+      });
+      // 棒のラベル（転入・転出・差）
+      const subLabels = ['転入','転出','差'];
+      CY.forEach((yr,gi)=>{
+        subLabels.forEach((lab,si)=>{
+          const idx = gi*4 + si;
+          if(idx < x.ticks.length){
+            const xp = x.getPixelForValue(idx);
+            c.save();c.font='11px "Noto Sans JP"';
+            c.fillStyle='rgba(0,0,0,0.45)';c.textAlign='center';
+            c.fillText(lab, xp, bottom+16);c.restore();
+          }
+        });
+      });
+    }
+  };
 
   new Chart(ctx2b,{
     type:'bar',
     data:{
-      labels: completeYears.map(y=>y+'年'),
+      labels: labels2b,
       datasets:[
-        {type:'bar', label:'県外転入超過', data:outExcess, backgroundColor:'rgba(44,123,182,0.75)', stack:'s', order:1},
-        {type:'bar', label:'県内転入超過', data:inExcess,  backgroundColor:'rgba(212,160,23,0.75)',  stack:'s', order:1},
-        {type:'bar', label:'外国人寄与（推計）', data:fgContrib, backgroundColor:'rgba(108,52,131,0.75)', stack:'s', order:1},
-        {type:'line',label:'社会増減（合計）', data:soc, borderColor:'#1A1916', borderWidth:2.5,
-         pointRadius:5, pointBackgroundColor:'#1A1916', tension:.2, fill:false, order:0},
+        {label:'日本人国内転入',    data:d_jIn,  backgroundColor:'rgba(44,123,182,0.75)', stack:'in'},
+        {label:'外国人転入寄与',    data:d_fIn,  backgroundColor:'rgba(108,52,131,0.75)', stack:'in'},
+        {label:'日本人国内転出',    data:d_jOut, backgroundColor:'rgba(192,57,43,0.6)',   stack:'out'},
+        {label:'外国人転出寄与',    data:d_fOut, backgroundColor:'rgba(192,57,43,0.3)',   stack:'out'},
+        {label:'差プラス（日本人）', data:makeData((yr,i)=>[0,0,Math.max(estatDiff[i],0),null]),
+         backgroundColor:'rgba(44,123,182,0.75)', stack:'diff'},
+        {label:'差プラス（外国人）', data:makeData((yr,i)=>[0,0,Math.max(fgContrib[i],0),null]),
+         backgroundColor:'rgba(108,52,131,0.75)', stack:'diff'},
+        {label:'差マイナス',        data:d_neg,
+         backgroundColor:'rgba(192,57,43,0.5)', stack:'diff'},
       ]
     },
     options:{
@@ -534,23 +614,29 @@ const baseOpts = {
         legend:{display:false},
         tooltip:{
           backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
-          titleColor:'#1A1916', bodyColor:'#6B6860', padding:12,
+          titleColor:'#1A1916', bodyColor:'#6B6860', padding:10,
           titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
           bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
           callbacks:{
-            label: item => `${item.dataset.label}：${item.raw>=0?'+':'▲'}${Math.abs(item.raw).toLocaleString()}人`,
-            labelColor: item=>({backgroundColor:item.dataset.borderColor||item.dataset.backgroundColor,borderColor:item.dataset.borderColor||item.dataset.backgroundColor}),
-          }
+            title: items => items[0].label.replace(/\d{4}/,'').trim()||items[0].label,
+            label: item => {
+              if(!item.raw) return null;
+              const v = item.raw;
+              return `${item.dataset.label}：${v>=0?'+':'▲'}${Math.abs(v).toLocaleString()}人`;
+            },
+            labelColor: item=>({backgroundColor:Array.isArray(item.dataset.backgroundColor)?item.dataset.backgroundColor[item.dataIndex]:item.dataset.backgroundColor,borderColor:'transparent'}),
+          },
+          filter: item=>!!item.raw && item.raw!==0,
         }
       },
       scales:{
-        x:{ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:12}},
-           grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8'}},
-        y:{stacked:true,
-           ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:11},callback:yTickCallback},
+        x:{ticks:{display:false},
+           grid:{display:false},border:{color:'#E2E0D8'}},
+        y:{ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:11},callback:yTickCallback},
            grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8',dash:[4,4]}}
       }
-    }
+    },
+    plugins:[divPlugin2b]
   });
 })();
 
