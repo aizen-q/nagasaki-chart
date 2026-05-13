@@ -38,10 +38,10 @@ h1{font-family:var(--serif);font-size:clamp(20px,4vw,32px);font-weight:400;line-
 main{max-width:980px;margin:0 auto;padding:40px 24px 0}
 
 /* タブ */
-.tabs{display:flex;gap:2px;margin-bottom:32px;border-bottom:2px solid var(--border);flex-wrap:wrap}
-.tab-btn{padding:10px 18px;font-size:13px;font-family:var(--sans);font-weight:400;background:none;border:none;color:var(--text-secondary);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap}
-.tab-btn:hover{color:var(--text-primary)}
-.tab-btn.active{color:var(--text-primary);border-bottom-color:var(--text-primary);font-weight:500}
+.tabs{display:flex;gap:4px;margin-bottom:32px;border-bottom:2px solid var(--border);flex-wrap:wrap;padding-bottom:0}
+.tab-btn{padding:10px 16px;font-size:13px;font-family:var(--sans);font-weight:400;background:var(--bg);border:1px solid var(--border);border-bottom:none;border-radius:6px 6px 0 0;color:var(--text-secondary);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap}
+.tab-btn:hover{color:var(--text-primary);background:var(--surface);border-color:var(--border)}
+.tab-btn.active{color:var(--text-primary);background:var(--surface);border-color:var(--border);border-bottom-color:var(--surface);font-weight:500;box-shadow:0 -2px 0 var(--text-primary)}
 
 /* タブパネル */
 .tab-panel{display:none}.tab-panel.active{display:block}
@@ -127,7 +127,7 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
   <!-- タブ1: 月次転入・転出 -->
   <div id="tab1" class="tab-panel active">
     <div class="insight blue">
-      <strong>確認ポイント：</strong>3〜4月に転入・転出ともに急増するパターンが毎年繰り返されている。これは進学・就職・転勤シーズンによるもの。2025年は転出が抑制され、年間で初めて転入超過に転換した。
+      <strong>確認ポイント：</strong>3〜4月に転入・転出ともに急増するパターンが毎年繰り返されている。これは進学・就職・転勤シーズンによるもの。2025年は年間で初めて転入超過に転換した。
     </div>
     <div class="chart-card">
       <p class="chart-label">月次 県外転入・転出の推移（2022〜2025年）</p>
@@ -165,24 +165,12 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
     </div>
 
     <div class="insight" style="border-left-color:var(--purple);background:#F5EEF8">
-      <strong>2025年の社会増減＋728人の内訳と要因：</strong><br>
-      e-Stat（国内移動）では▲1,389人の転出超過。しかしBODIK集計では＋728人の転入超過。<br>
+      <strong>2025年の社会増減＋728人の内訳：</strong><br>
+      e-Stat（国内移動のみ）では▲1,389人の転出超過。しかしBODIK集計では＋728人の転入超過。<br>
       この差（約＋2,117人）は<strong>外国人の新規入国・転入</strong>によるものと推計されます。<br>
       <strong style="color:#C0392B">▶ 2025年の転入超過転換は、外国人流入が最大の要因。</strong>
       日本人の国内移動では依然として転出超過が続いています。<br>
-      <small>※長崎県の外国人労働者数は2024年10月末時点で11,096人（前年比＋28.1%・過去最高）。スタジアムシティ開業による専門的・技術的分野の外国人雇用が40.8%増と急増（長崎労働局）。</small>
-    </div>
-
-    <div class="chart-card">
-      <p class="chart-label">年次 社会増減の内訳（年ごとに「転入」「転出」「差」の3本表示）</p>
-      <p class="chart-unit">単位：人　※e-Stat＝国内移動のみ　外国人寄与はBODIK社会増減とe-Statの差から推計</p>
-      <canvas id="chart2b" height="300"></canvas>
-      <div class="legend">
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(44,123,182,0.7)"></div><span class="leg-type">棒</span>日本人国内転入（e-Stat）</div>
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(108,52,131,0.7)"></div><span class="leg-type">棒</span>外国人転入寄与（推計）</div>
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.5)"></div><span class="leg-type">棒</span>日本人国内転出（e-Stat）</div>
-        <div class="legend-item"><div class="leg-bar" style="background:rgba(30,132,73,0.7)"></div><span class="leg-type">棒</span>差（緑＝転入超過・赤＝転出超過）</div>
-      </div>
+      <small>※長崎県の外国人労働者数は2024年10月末時点で11,096人（前年比＋28.1%・過去最高・長崎労働局）。全国でも外国人労働者数は過去最多を更新（厚生労働省）。</small>
     </div>
 
     <div class="tbl-wrap">
@@ -329,10 +317,10 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
 <script>
 // ===== データ =====
 const RAW = {
-  oi:[{y:2022,m:1,v:403},{y:2022,m:2,v:395},{y:2022,m:3,v:1454},{y:2022,m:4,v:697},{y:2022,m:5,v:456},{y:2022,m:6,v:508},{y:2022,m:7,v:534},{y:2022,m:8,v:527},{y:2022,m:9,v:519},{y:2022,m:10,v:496},{y:2022,m:11,v:494},{y:2022,m:12,v:429},{y:2023,m:1,v:584},{y:2023,m:2,v:638},{y:2023,m:3,v:2699},{y:2023,m:4,v:893},{y:2023,m:5,v:540},{y:2023,m:6,v:531},{y:2023,m:7,v:558},{y:2023,m:8,v:537},{y:2023,m:9,v:432},{y:2023,m:10,v:355},{y:2023,m:11,v:313},{y:2023,m:12,v:329},{y:2024,m:1,v:457},{y:2024,m:2,v:372},{y:2024,m:3,v:1401},{y:2024,m:4,v:866},{y:2024,m:5,v:540},{y:2024,m:6,v:517},{y:2024,m:7,v:596},{y:2024,m:8,v:576},{y:2024,m:9,v:538},{y:2024,m:10,v:512},{y:2024,m:11,v:439},{y:2024,m:12,v:258},{y:2025,m:1,v:411},{y:2025,m:2,v:311},{y:2025,m:3,v:2490},{y:2025,m:4,v:896},{y:2025,m:5,v:596},{y:2025,m:6,v:506},{y:2025,m:7,v:624},{y:2025,m:8,v:595},{y:2025,m:9,v:582},{y:2025,m:10,v:534},{y:2025,m:11,v:499},{y:2025,m:12,v:659},{y:2026,m:1,v:432},{y:2026,m:2,v:416},{y:2026,m:3,v:1564}],
-  oo:[{y:2022,m:1,v:415},{y:2022,m:2,v:423},{y:2022,m:3,v:2695},{y:2022,m:4,v:760},{y:2022,m:5,v:511},{y:2022,m:6,v:487},{y:2022,m:7,v:511},{y:2022,m:8,v:487},{y:2022,m:9,v:476},{y:2022,m:10,v:534},{y:2022,m:11,v:486},{y:2022,m:12,v:249},{y:2023,m:1,v:674},{y:2023,m:2,v:808},{y:2023,m:3,v:3746},{y:2023,m:4,v:914},{y:2023,m:5,v:561},{y:2023,m:6,v:554},{y:2023,m:7,v:575},{y:2023,m:8,v:539},{y:2023,m:9,v:443},{y:2023,m:10,v:378},{y:2023,m:11,v:350},{y:2023,m:12,v:311},{y:2024,m:1,v:528},{y:2024,m:2,v:625},{y:2024,m:3,v:2571},{y:2024,m:4,v:1172},{y:2024,m:5,v:605},{y:2024,m:6,v:597},{y:2024,m:7,v:642},{y:2024,m:8,v:600},{y:2024,m:9,v:537},{y:2024,m:10,v:516},{y:2024,m:11,v:451},{y:2024,m:12,v:338},{y:2025,m:1,v:466},{y:2025,m:2,v:625},{y:2025,m:3,v:2571},{y:2025,m:4,v:799},{y:2025,m:5,v:501},{y:2025,m:6,v:506},{y:2025,m:7,v:506},{y:2025,m:8,v:511},{y:2025,m:9,v:441},{y:2025,m:10,v:469},{y:2025,m:11,v:479},{y:2025,m:12,v:564},{y:2026,m:1,v:466},{y:2026,m:2,v:625},{y:2026,m:3,v:2571}],
-  ii:[{y:2022,m:1,v:316},{y:2022,m:2,v:260},{y:2022,m:3,v:853},{y:2022,m:4,v:432},{y:2022,m:5,v:289},{y:2022,m:6,v:286},{y:2022,m:7,v:316},{y:2022,m:8,v:316},{y:2022,m:9,v:303},{y:2022,m:10,v:332},{y:2022,m:11,v:296},{y:2022,m:12,v:281},{y:2023,m:1,v:317},{y:2023,m:2,v:254},{y:2023,m:3,v:878},{y:2023,m:4,v:477},{y:2023,m:5,v:322},{y:2023,m:6,v:301},{y:2023,m:7,v:327},{y:2023,m:8,v:319},{y:2023,m:9,v:289},{y:2023,m:10,v:297},{y:2023,m:11,v:305},{y:2023,m:12,v:285},{y:2024,m:1,v:320},{y:2024,m:2,v:228},{y:2024,m:3,v:821},{y:2024,m:4,v:437},{y:2024,m:5,v:323},{y:2024,m:6,v:316},{y:2024,m:7,v:337},{y:2024,m:8,v:337},{y:2024,m:9,v:302},{y:2024,m:10,v:316},{y:2024,m:11,v:293},{y:2024,m:12,v:205},{y:2025,m:1,v:279},{y:2025,m:2,v:236},{y:2025,m:3,v:814},{y:2025,m:4,v:430},{y:2025,m:5,v:310},{y:2025,m:6,v:293},{y:2025,m:7,v:337},{y:2025,m:8,v:321},{y:2025,m:9,v:280},{y:2025,m:10,v:296},{y:2025,m:11,v:265},{y:2025,m:12,v:293},{y:2026,m:1,v:213},{y:2026,m:2,v:303},{y:2026,m:3,v:1095}],
-  io:[{y:2022,m:1,v:350},{y:2022,m:2,v:299},{y:2022,m:3,v:935},{y:2022,m:4,v:440},{y:2022,m:5,v:313},{y:2022,m:6,v:309},{y:2022,m:7,v:345},{y:2022,m:8,v:344},{y:2022,m:9,v:317},{y:2022,m:10,v:363},{y:2022,m:11,v:323},{y:2022,m:12,v:450},{y:2023,m:1,v:329},{y:2023,m:2,v:265},{y:2023,m:3,v:923},{y:2023,m:4,v:499},{y:2023,m:5,v:340},{y:2023,m:6,v:313},{y:2023,m:7,v:343},{y:2023,m:8,v:337},{y:2023,m:9,v:298},{y:2023,m:10,v:292},{y:2023,m:11,v:314},{y:2023,m:12,v:372},{y:2024,m:1,v:332},{y:2024,m:2,v:237},{y:2024,m:3,v:875},{y:2024,m:4,v:457},{y:2024,m:5,v:337},{y:2024,m:6,v:319},{y:2024,m:7,v:363},{y:2024,m:8,v:356},{y:2024,m:9,v:314},{y:2024,m:10,v:325},{y:2024,m:11,v:305},{y:2024,m:12,v:358},{y:2025,m:1,v:299},{y:2025,m:2,v:264},{y:2025,m:3,v:859},{y:2025,m:4,v:437},{y:2025,m:5,v:319},{y:2025,m:6,v:300},{y:2025,m:7,v:353},{y:2025,m:8,v:330},{y:2025,m:9,v:294},{y:2025,m:10,v:302},{y:2025,m:11,v:287},{y:2025,m:12,v:351},{y:2026,m:1,v:248},{y:2026,m:2,v:228},{y:2026,m:3,v:1142}],
+  oi:[{y:2022,m:1,v:403},{y:2022,m:2,v:395},{y:2022,m:3,v:1454},{y:2022,m:4,v:697},{y:2022,m:5,v:456},{y:2022,m:6,v:508},{y:2022,m:7,v:534},{y:2022,m:8,v:527},{y:2022,m:9,v:519},{y:2022,m:10,v:496},{y:2022,m:11,v:494},{y:2022,m:12,v:429},{y:2023,m:1,v:584},{y:2023,m:2,v:638},{y:2023,m:3,v:2699},{y:2023,m:4,v:893},{y:2023,m:5,v:540},{y:2023,m:6,v:531},{y:2023,m:7,v:558},{y:2023,m:8,v:537},{y:2023,m:9,v:432},{y:2023,m:10,v:355},{y:2023,m:11,v:313},{y:2023,m:12,v:329},{y:2024,m:1,v:457},{y:2024,m:2,v:372},{y:2024,m:3,v:1401},{y:2024,m:4,v:866},{y:2024,m:5,v:540},{y:2024,m:6,v:517},{y:2024,m:7,v:596},{y:2024,m:8,v:576},{y:2024,m:9,v:538},{y:2024,m:10,v:512},{y:2024,m:11,v:439},{y:2024,m:12,v:258},{y:2025,m:1,v:411},{y:2025,m:2,v:595},{y:2025,m:3,v:2490},{y:2025,m:4,v:1265},{y:2025,m:5,v:570},{y:2025,m:6,v:523},{y:2025,m:7,v:569},{y:2025,m:8,v:599},{y:2025,m:9,v:521},{y:2025,m:10,v:450},{y:2025,m:11,v:311},{y:2025,m:12,v:399},{y:2026,m:1,v:432},{y:2026,m:2,v:416},{y:2026,m:3,v:1564}],
+  oo:[{y:2022,m:1,v:415},{y:2022,m:2,v:423},{y:2022,m:3,v:2695},{y:2022,m:4,v:760},{y:2022,m:5,v:511},{y:2022,m:6,v:487},{y:2022,m:7,v:511},{y:2022,m:8,v:487},{y:2022,m:9,v:476},{y:2022,m:10,v:534},{y:2022,m:11,v:486},{y:2022,m:12,v:249},{y:2023,m:1,v:674},{y:2023,m:2,v:808},{y:2023,m:3,v:3746},{y:2023,m:4,v:914},{y:2023,m:5,v:561},{y:2023,m:6,v:554},{y:2023,m:7,v:575},{y:2023,m:8,v:539},{y:2023,m:9,v:443},{y:2023,m:10,v:378},{y:2023,m:11,v:350},{y:2023,m:12,v:311},{y:2024,m:1,v:528},{y:2024,m:2,v:625},{y:2024,m:3,v:2571},{y:2024,m:4,v:1172},{y:2024,m:5,v:605},{y:2024,m:6,v:597},{y:2024,m:7,v:642},{y:2024,m:8,v:600},{y:2024,m:9,v:537},{y:2024,m:10,v:516},{y:2024,m:11,v:451},{y:2024,m:12,v:338},{y:2025,m:1,v:504},{y:2025,m:2,v:373},{y:2025,m:3,v:1600},{y:2025,m:4,v:1560},{y:2025,m:5,v:525},{y:2025,m:6,v:515},{y:2025,m:7,v:531},{y:2025,m:8,v:418},{y:2025,m:9,v:719},{y:2025,m:10,v:497},{y:2025,m:11,v:321},{y:2025,m:12,v:375},{y:2026,m:1,v:466},{y:2026,m:2,v:625},{y:2026,m:3,v:2571}],
+  ii:[{y:2022,m:1,v:316},{y:2022,m:2,v:260},{y:2022,m:3,v:853},{y:2022,m:4,v:432},{y:2022,m:5,v:289},{y:2022,m:6,v:286},{y:2022,m:7,v:316},{y:2022,m:8,v:316},{y:2022,m:9,v:303},{y:2022,m:10,v:332},{y:2022,m:11,v:296},{y:2022,m:12,v:281},{y:2023,m:1,v:317},{y:2023,m:2,v:254},{y:2023,m:3,v:878},{y:2023,m:4,v:477},{y:2023,m:5,v:322},{y:2023,m:6,v:301},{y:2023,m:7,v:327},{y:2023,m:8,v:319},{y:2023,m:9,v:289},{y:2023,m:10,v:297},{y:2023,m:11,v:305},{y:2023,m:12,v:285},{y:2024,m:1,v:320},{y:2024,m:2,v:228},{y:2024,m:3,v:821},{y:2024,m:4,v:437},{y:2024,m:5,v:323},{y:2024,m:6,v:316},{y:2024,m:7,v:337},{y:2024,m:8,v:337},{y:2024,m:9,v:302},{y:2024,m:10,v:316},{y:2024,m:11,v:293},{y:2024,m:12,v:205},{y:2025,m:1,v:215},{y:2025,m:2,v:228},{y:2025,m:3,v:1077},{y:2025,m:4,v:534},{y:2025,m:5,v:268},{y:2025,m:6,v:197},{y:2025,m:7,v:292},{y:2025,m:8,v:273},{y:2025,m:9,v:243},{y:2025,m:10,v:290},{y:2025,m:11,v:218},{y:2025,m:12,v:223},{y:2026,m:1,v:213},{y:2026,m:2,v:303},{y:2026,m:3,v:1095}],
+  io:[{y:2022,m:1,v:350},{y:2022,m:2,v:299},{y:2022,m:3,v:935},{y:2022,m:4,v:440},{y:2022,m:5,v:313},{y:2022,m:6,v:309},{y:2022,m:7,v:345},{y:2022,m:8,v:344},{y:2022,m:9,v:317},{y:2022,m:10,v:363},{y:2022,m:11,v:323},{y:2022,m:12,v:450},{y:2023,m:1,v:329},{y:2023,m:2,v:265},{y:2023,m:3,v:923},{y:2023,m:4,v:499},{y:2023,m:5,v:340},{y:2023,m:6,v:313},{y:2023,m:7,v:343},{y:2023,m:8,v:337},{y:2023,m:9,v:298},{y:2023,m:10,v:292},{y:2023,m:11,v:314},{y:2023,m:12,v:372},{y:2024,m:1,v:332},{y:2024,m:2,v:237},{y:2024,m:3,v:875},{y:2024,m:4,v:457},{y:2024,m:5,v:337},{y:2024,m:6,v:319},{y:2024,m:7,v:363},{y:2024,m:8,v:356},{y:2024,m:9,v:314},{y:2024,m:10,v:325},{y:2024,m:11,v:305},{y:2024,m:12,v:358},{y:2025,m:1,v:199},{y:2025,m:2,v:208},{y:2025,m:3,v:1227},{y:2025,m:4,v:690},{y:2025,m:5,v:229},{y:2025,m:6,v:246},{y:2025,m:7,v:275},{y:2025,m:8,v:231},{y:2025,m:9,v:186},{y:2025,m:10,v:222},{y:2025,m:11,v:175},{y:2025,m:12,v:207},{y:2026,m:1,v:248},{y:2026,m:2,v:228},{y:2026,m:3,v:1142}],
   births:[{y:2022,m:1,v:196},{y:2022,m:2,v:179},{y:2022,m:3,v:206},{y:2022,m:4,v:210},{y:2022,m:5,v:225},{y:2022,m:6,v:208},{y:2022,m:7,v:210},{y:2022,m:8,v:194},{y:2022,m:9,v:196},{y:2022,m:10,v:218},{y:2022,m:11,v:197},{y:2022,m:12,v:210},{y:2023,m:1,v:201},{y:2023,m:2,v:170},{y:2023,m:3,v:179},{y:2023,m:4,v:183},{y:2023,m:5,v:185},{y:2023,m:6,v:191},{y:2023,m:7,v:202},{y:2023,m:8,v:172},{y:2023,m:9,v:178},{y:2023,m:10,v:181},{y:2023,m:11,v:181},{y:2023,m:12,v:163},{y:2024,m:1,v:165},{y:2024,m:2,v:144},{y:2024,m:3,v:158},{y:2024,m:4,v:170},{y:2024,m:5,v:160},{y:2024,m:6,v:156},{y:2024,m:7,v:171},{y:2024,m:8,v:168},{y:2024,m:9,v:149},{y:2024,m:10,v:164},{y:2024,m:11,v:162},{y:2024,m:12,v:137},{y:2025,m:1,v:141},{y:2025,m:2,v:148},{y:2025,m:3,v:163},{y:2025,m:4,v:168},{y:2025,m:5,v:151},{y:2025,m:6,v:157},{y:2025,m:7,v:156},{y:2025,m:8,v:157},{y:2025,m:9,v:158},{y:2025,m:10,v:151},{y:2025,m:11,v:137},{y:2025,m:12,v:158},{y:2026,m:1,v:165},{y:2026,m:2,v:120},{y:2026,m:3,v:181}],
   deaths:[{y:2022,m:1,v:520},{y:2022,m:2,v:475},{y:2022,m:3,v:489},{y:2022,m:4,v:450},{y:2022,m:5,v:457},{y:2022,m:6,v:443},{y:2022,m:7,v:466},{y:2022,m:8,v:480},{y:2022,m:9,v:440},{y:2022,m:10,v:508},{y:2022,m:11,v:524},{y:2022,m:12,v:588},{y:2023,m:1,v:620},{y:2023,m:2,v:514},{y:2023,m:3,v:557},{y:2023,m:4,v:456},{y:2023,m:5,v:461},{y:2023,m:6,v:440},{y:2023,m:7,v:480},{y:2023,m:8,v:496},{y:2023,m:9,v:441},{y:2023,m:10,v:500},{y:2023,m:11,v:488},{y:2023,m:12,v:506},{y:2024,m:1,v:561},{y:2024,m:2,v:497},{y:2024,m:3,v:490},{y:2024,m:4,v:463},{y:2024,m:5,v:484},{y:2024,m:6,v:449},{y:2024,m:7,v:488},{y:2024,m:8,v:512},{y:2024,m:9,v:469},{y:2024,m:10,v:530},{y:2024,m:11,v:503},{y:2024,m:12,v:595},{y:2025,m:1,v:604},{y:2025,m:2,v:498},{y:2025,m:3,v:502},{y:2025,m:4,v:461},{y:2025,m:5,v:464},{y:2025,m:6,v:465},{y:2025,m:7,v:492},{y:2025,m:8,v:525},{y:2025,m:9,v:445},{y:2025,m:10,v:491},{y:2025,m:11,v:483},{y:2025,m:12,v:685},{y:2026,m:1,v:588},{y:2026,m:2,v:525},{y:2026,m:3,v:509}],
 };
@@ -499,147 +487,9 @@ const baseOpts = {
     html+=`<tr><td>${yr}年</td><td>${b.toLocaleString()}人</td><td>${d.toLocaleString()}人</td><td class="neg">▲${Math.abs(nat[i]).toLocaleString()}人</td><td class="${soc[i]>=0?'pos':'neg'}">${fmtAbs(soc[i])}人</td><td class="neg">▲${Math.abs(pop[i]).toLocaleString()}人</td></tr>`;
   });
   tbl.innerHTML = html+'</tbody>';
-
-  // ===== チャート2b: 社会増減の内訳（グループ×積み上げ棒グラフ）=====
-  const ctx2b = document.getElementById('chart2b').getContext('2d');
-
-  const CY = [2022,2023,2024,2025];
-
-  // e-Stat国内移動（日本人）
-  const estatIn  = {2022:6218, 2023:5993, 2024:6928, 2025:7193};
-  const estatOut = {2022:8526, 2023:8309, 2024:8722, 2025:8582};
-  const estatDiff = CY.map(yr => estatIn[yr] - estatOut[yr]);
-
-  // BODIK社会増減
-  const bodikSoc = CY.map(yr=>{
-    const oi=getYearTotal(RAW.oi,yr),oo=getYearTotal(RAW.oo,yr);
-    const ii=getYearTotal(RAW.ii,yr),io=getYearTotal(RAW.io,yr);
-    return (oi-oo)+(ii-io);
-  });
-
-  // 外国人寄与推計 = BODIK社会増減 - e-Stat国内差
-  const fgContrib = CY.map((yr,i) => bodikSoc[i] - estatDiff[i]);
-
-  // x軸: 2022転入, 2022転出, 2022差, (空), 2023転入...
-  // グループ間に空白を入れる
-  const labels2b = [];
-  CY.forEach(yr => {
-    labels2b.push(`${yr}転入`, `${yr}転出`, `${yr}差`, '');
-  });
-  // 最後の空白を除く
-  labels2b.pop();
-
-  // 各データセットの値を構築（グループ×3 + 空白1）
-  function makeData(valFn) {
-    const d = [];
-    CY.forEach((yr,i) => {
-      const [vin, vout, vdiff] = valFn(yr, i);
-      d.push(vin, vout, vdiff, null);
-    });
-    d.pop();
-    return d;
-  }
-
-  // 日本人国内転入（青）
-  const d_jIn  = makeData(yr => [estatIn[yr], 0, Math.max(estatDiff[CY.indexOf(yr)],0), null]);
-  // 外国人転入寄与（紫）- 転入と差の棒にのせる
-  const d_fIn  = makeData((yr,i) => [Math.max(fgContrib[i],0), 0, Math.max(fgContrib[i],0), null]);
-  // 日本人国内転出（赤）
-  const d_jOut = makeData(yr => [0, estatOut[yr], 0, null]);
-  // 外国人転出寄与（薄赤）
-  const d_fOut = makeData((yr,i) => [0, Math.max(-fgContrib[i],0), 0, null]);
-  // 差のマイナス部分（赤）
-  const d_neg  = makeData((yr,i) => [0, 0, Math.abs(Math.min(bodikSoc[i],0)), null]);
-
-  // 年区切り・ラベルプラグイン
-  const divPlugin2b = {
-    id:'div2b',
-    afterDraw(chart){
-      const {ctx:c, chartArea:{top,bottom}, scales:{x}} = chart;
-      // 区切り線（各グループの後の空白位置）
-      [3,7,11].forEach(idx=>{
-        if(idx < labels.length){
-          const xp = x.getPixelForValue(idx-0.5);
-          c.save();c.strokeStyle='rgba(0,0,0,0.12)';c.lineWidth=1.5;
-          c.setLineDash([]);
-          c.beginPath();c.moveTo(xp,top);c.lineTo(xp,bottom);c.stroke();c.restore();
-        }
-      });
-      // 年ラベル（各グループ中央）
-      [[1,'2022年'],[5,'2023年'],[9,'2024年'],[13,'2025年']].forEach(([idx,yr])=>{
-        if(idx < labels.length + 1){
-          const xp = x.getPixelForValue(idx);
-          c.save();c.font='bold 12px "Noto Sans JP"';
-          c.fillStyle='rgba(0,0,0,0.55)';c.textAlign='center';
-          c.fillText(yr, xp, top-10);c.restore();
-        }
-      });
-      // 棒のラベル（転入・転出・差）
-      const subLabels = ['転入','転出','差'];
-      CY.forEach((yr,gi)=>{
-        subLabels.forEach((lab,si)=>{
-          const idx = gi*4 + si;
-          if(idx < x.ticks.length){
-            const xp = x.getPixelForValue(idx);
-            c.save();c.font='11px "Noto Sans JP"';
-            c.fillStyle='rgba(0,0,0,0.45)';c.textAlign='center';
-            c.fillText(lab, xp, bottom+16);c.restore();
-          }
-        });
-      });
-    }
-  };
-
-  new Chart(ctx2b,{
-    type:'bar',
-    data:{
-      labels: labels2b,
-      datasets:[
-        {label:'日本人国内転入',    data:d_jIn,  backgroundColor:'rgba(44,123,182,0.75)', stack:'in'},
-        {label:'外国人転入寄与',    data:d_fIn,  backgroundColor:'rgba(108,52,131,0.75)', stack:'in'},
-        {label:'日本人国内転出',    data:d_jOut, backgroundColor:'rgba(192,57,43,0.6)',   stack:'out'},
-        {label:'外国人転出寄与',    data:d_fOut, backgroundColor:'rgba(192,57,43,0.3)',   stack:'out'},
-        {label:'差プラス（日本人）', data:makeData((yr,i)=>[0,0,Math.max(estatDiff[i],0),null]),
-         backgroundColor:'rgba(44,123,182,0.75)', stack:'diff'},
-        {label:'差プラス（外国人）', data:makeData((yr,i)=>[0,0,Math.max(fgContrib[i],0),null]),
-         backgroundColor:'rgba(108,52,131,0.75)', stack:'diff'},
-        {label:'差マイナス',        data:d_neg,
-         backgroundColor:'rgba(192,57,43,0.5)', stack:'diff'},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      interaction:{mode:'index', intersect:false},
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
-          titleColor:'#1A1916', bodyColor:'#6B6860', padding:10,
-          titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
-          bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
-          callbacks:{
-            title: items => items[0].label.replace(/\d{4}/,'').trim()||items[0].label,
-            label: item => {
-              if(!item.raw) return null;
-              const v = item.raw;
-              return `${item.dataset.label}：${v>=0?'+':'▲'}${Math.abs(v).toLocaleString()}人`;
-            },
-            labelColor: item=>({backgroundColor:Array.isArray(item.dataset.backgroundColor)?item.dataset.backgroundColor[item.dataIndex]:item.dataset.backgroundColor,borderColor:'transparent'}),
-          },
-          filter: item=>!!item.raw && item.raw!==0,
-        }
-      },
-      scales:{
-        x:{ticks:{display:false},
-           grid:{display:false},border:{color:'#E2E0D8'}},
-        y:{ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:11},callback:yTickCallback},
-           grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8',dash:[4,4]}}
-      }
-    },
-    plugins:[divPlugin2b]
-  });
 })();
 
+// ===== チャート3: 県外転入・転出年次 =====
 // ===== チャート3: 県外転入・転出年次 =====
 (function(){
   const ctx = document.getElementById('chart3').getContext('2d');
