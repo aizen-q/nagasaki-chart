@@ -75,6 +75,17 @@ tr:last-child td{border-bottom:none}
 tr:hover td{background:#FAFAF6}
 .pos{color:var(--green);font-weight:500}.neg{color:var(--red)}.bold{font-weight:500;color:var(--text-primary)}
 
+/* データ定義注記バナー */
+.data-notice{max-width:980px;margin:0 auto;padding:16px 24px 0}
+.data-notice-box{background:#FFFBF0;border:1px solid #E8D88A;border-left:4px solid #C9A800;border-radius:0 6px 6px 0;padding:14px 18px;font-size:12px;color:var(--text-primary);line-height:1.8}
+.data-notice-box .notice-title{font-weight:500;font-size:12px;color:#7A6000;letter-spacing:.03em;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.data-notice-box table{background:transparent;border:none;border-radius:0;font-size:12px;margin-top:8px}
+.data-notice-box table th{background:transparent;border:none;border-bottom:1px solid #E8D88A;padding:4px 10px;font-size:11px;color:#7A6000}
+.data-notice-box table td{border:none;border-bottom:1px solid #F5EDCC;padding:4px 10px;color:var(--text-secondary)}
+.data-notice-box table td:first-child{color:var(--text-primary);font-weight:500}
+.data-notice-box table tr:last-child td{border-bottom:none}
+.data-notice-box table tr:hover td{background:transparent}
+
 /* フッター */
 footer{max-width:980px;margin:0 auto;padding:0 24px}
 .source{font-size:11px;color:var(--text-tertiary);border-top:1px solid var(--border);padding-top:16px;line-height:1.8}
@@ -113,6 +124,33 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
   </div>
 </div>
 
+<div class="data-notice">
+  <div class="data-notice-box">
+    <div class="notice-title">📋 このダッシュボードが使用するデータについて</div>
+    このダッシュボードは<strong>長崎市オープンデータ（BODIK）</strong>に基づいています。BODIKのデータは住民基本台帳に登録されたすべての人（日本人・外国人）の転入出を集計しており、国外からの転入・国外への転出も含みます。<br>
+    一方、総務省e-Stat「住民基本台帳人口移動報告」は<strong>日本人・国内移動のみ</strong>を集計した別の統計です。2025年の長崎市の数値はe-Statでは転出超過（▲1,327人）であり、BODIKの転入超過（＋728人）と逆の結果になっていますが、これは矛盾ではなく、集計対象の定義が異なることによるものです。<br>
+    <table>
+      <thead>
+        <tr>
+          <th>比較項目</th>
+          <th>このダッシュボード（BODIK）</th>
+          <th>e-Stat 住民基本台帳人口移動報告</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>集計対象者</td><td>日本人＋外国人</td><td>日本人のみ</td></tr>
+        <tr><td>移動の範囲</td><td>国内移動＋国外との移動を含む</td><td>国内市区町村間移動のみ</td></tr>
+        <tr><td>2025年 転入数</td><td>12,761人</td><td>9,733人</td></tr>
+        <tr><td>2025年 転出数</td><td>12,033人</td><td>11,060人</td></tr>
+        <tr><td>2025年 社会増減</td><td><strong style="color:#1E8449">＋728人（転入超過）</strong></td><td><strong style="color:#C0392B">▲1,327人（転出超過）</strong></td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:8px;color:var(--text-tertiary);font-size:11px">
+      ※転入数の差（約3,000人）・転出数の差（約1,000人）は、主に外国人の国内移動および国際移動（新規入国・出国）によるものと推定されます。BODIKの外国人在住人口は2025年末に前年末比＋578人（5,487人）増加しており、社会増減のプラス転換に寄与したと考えられます。外国人の転入出数を月次で直接検証するデータは現時点では非公開です。
+    </div>
+  </div>
+</div>
+
 <main>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('tab1',this)">① 月次 転入・転出</button>
@@ -127,7 +165,7 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
   <!-- タブ1: 月次転入・転出 -->
   <div id="tab1" class="tab-panel active">
     <div class="insight blue">
-      <strong>確認ポイント：</strong>3〜4月に転入・転出ともに急増するパターンが毎年繰り返されている。これは進学・就職・転勤シーズンによるもの。2025年は年間で初めて転入超過に転換した。
+      <strong>確認ポイント：</strong>3〜4月に転入・転出ともに急増するパターンが毎年繰り返されている。これは進学・就職・転勤シーズンによるもの。2025年は長崎市オープンデータ（BODIK）ベース（日本人＋外国人・国際移動含む）で年間転入超過（＋728人）に転換した。なお、日本人・国内移動のみを集計するe-Statでは2025年も転出超過（▲1,327人）。両統計はデータの定義が異なるため、上の注記を参照されたい。
     </div>
     <div class="chart-card">
       <p class="chart-label">月次 県外転入・転出の推移（2022〜2025年）</p>
@@ -307,8 +345,10 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
 
 <footer>
   <p class="source">
-    出典：長崎市オープンデータ（BODIK）人口動態【各月】・県外転入出者数【各月】・県内転入出者数【各月】<br>
-    ライセンス：CC BY（出典明記済み）　分析補助：Claude（Anthropic）　作成：あいぜん不動産　© 2026
+    出典①：長崎市オープンデータ（BODIK）人口動態【各月】・県外転入出者数【各月】・県内転入出者数【各月】・外国人人口統計　ライセンス：CC BY<br>
+    出典②：e-Stat「住民基本台帳人口移動報告」2025年（年齢別転入超過タブのみ使用）<br>
+    ※出典①（BODIK）と出典②（e-Stat）はデータの定義（対象者・移動範囲）が異なります。詳細はページ上部の注記を参照してください。<br>
+    分析補助：Claude（Anthropic）　作成：あいぜん不動産　© 2026
   </p>
 </footer>
 
