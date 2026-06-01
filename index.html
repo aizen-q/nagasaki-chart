@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>長崎市 人口動態ダッシュボード（2022〜2025年）</title>
 <meta property="og:title" content="長崎市 人口動態ダッシュボード（2022〜2025年）">
-<meta property="og:description" content="長崎市の転入・転出・自然増減・社会増減を多角的に見える化。2025年に県外転入超過に転換。長崎市オープンデータ（BODIK）分析。">
+<meta property="og:description" content="長崎市の転入・転出・自然増減・社会増減を多角的に見える化。長崎市オープンデータ（BODIK）分析。">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -20,39 +20,24 @@
 }
 html{font-size:16px}
 body{background:var(--bg);color:var(--text-primary);font-family:var(--sans);font-weight:300;line-height:1.7;min-height:100vh;padding:0 0 60px}
-
-/* ヘッダー */
 header{background:var(--surface);border-bottom:1px solid var(--border);padding:36px 48px 32px}
 .eyebrow{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px}
 h1{font-family:var(--serif);font-size:clamp(20px,4vw,32px);font-weight:400;line-height:1.25;margin-bottom:8px}
 .subtitle{font-size:13px;color:var(--text-secondary)}
-
-/* KPIバー */
 .kpi-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .kpi-item{background:var(--surface);padding:18px 24px}
 .kpi-num{font-family:var(--serif);font-size:22px;line-height:1;margin-bottom:3px}
 .kpi-label{font-size:11px;color:var(--text-secondary);line-height:1.4}
-/* 社会増減の内訳補足 */
 .kpi-breakdown{font-size:10px;color:var(--text-tertiary);margin-top:5px;padding-top:5px;border-top:1px solid var(--border);line-height:1.5}
 .kpi-num.red{color:var(--red)}.kpi-num.green{color:var(--green)}.kpi-num.blue{color:var(--blue)}.kpi-num.amber{color:var(--amber)}
-
-/* メイン */
 main{max-width:980px;margin:0 auto;padding:40px 24px 0}
-
-/* タブ */
 .tabs{display:flex;gap:4px;margin-bottom:32px;border-bottom:2px solid var(--border);flex-wrap:wrap;padding-bottom:0}
 .tab-btn{padding:10px 16px;font-size:13px;font-family:var(--sans);font-weight:400;background:var(--bg);border:1px solid var(--border);border-bottom:none;border-radius:6px 6px 0 0;color:var(--text-secondary);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap}
 .tab-btn:hover{color:var(--text-primary);background:var(--surface);border-color:var(--border)}
 .tab-btn.active{color:var(--text-primary);background:var(--surface);border-color:var(--border);border-bottom-color:var(--surface);font-weight:500;box-shadow:0 -2px 0 var(--text-primary)}
-/* データ定義タブは右端に少し色を変えて区別 */
 .tab-btn.meta{font-size:12px;color:var(--text-tertiary)}
-.tab-btn.meta:hover{color:var(--text-secondary)}
 .tab-btn.meta.active{color:var(--text-secondary);box-shadow:0 -2px 0 var(--text-tertiary)}
-
-/* タブパネル */
 .tab-panel{display:none}.tab-panel.active{display:block}
-
-/* チャートカード */
 .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px 28px 20px;margin-bottom:24px}
 .chart-label{font-size:12px;font-weight:500;color:var(--text-secondary);letter-spacing:.05em;margin-bottom:4px}
 .chart-unit{font-size:11px;color:var(--text-tertiary);margin-bottom:16px}
@@ -62,15 +47,11 @@ main{max-width:980px;margin:0 auto;padding:40px 24px 0}
 .leg-dash{width:24px;height:0;border-top:2.5px dashed;flex-shrink:0}
 .leg-bar{width:12px;height:12px;border-radius:2px;flex-shrink:0}
 .leg-type{font-size:10px;background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:1px 5px;color:var(--text-tertiary);flex-shrink:0;margin-left:-2px}
-
-/* インサイトボックス */
 .insight{background:#F8F9FA;border-left:3px solid var(--text-secondary);border-radius:0 6px 6px 0;padding:14px 18px;margin-bottom:24px;font-size:13px;color:var(--text-primary);line-height:1.7}
 .insight.green{border-left-color:var(--green);background:#F0FAF4}
 .insight.red{border-left-color:var(--red);background:#FDF2F1}
 .insight.blue{border-left-color:var(--blue);background:#EBF5FB}
 .insight strong{font-weight:500}
-
-/* データテーブル */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:24px}
 table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
 th{background:#F2F0EA;padding:10px 14px;text-align:right;font-size:11px;font-weight:500;color:var(--text-secondary);letter-spacing:.05em;border-bottom:1px solid var(--border)}
@@ -80,8 +61,6 @@ td:first-child{text-align:left;font-weight:500;color:var(--text-primary)}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#FAFAF6}
 .pos{color:var(--green);font-weight:500}.neg{color:var(--red)}.bold{font-weight:500;color:var(--text-primary)}
-
-/* データ定義タブ内のボックス */
 .data-notice-box{background:#FFFBF0;border:1px solid #E8D88A;border-left:4px solid #C9A800;border-radius:0 6px 6px 0;padding:18px 22px;font-size:13px;color:var(--text-primary);line-height:1.8;margin-bottom:24px}
 .data-notice-box .notice-title{font-weight:500;font-size:13px;color:#7A6000;letter-spacing:.03em;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .data-notice-box table{background:transparent;border:none;border-radius:0;font-size:13px;margin-top:10px}
@@ -91,11 +70,8 @@ tr:hover td{background:#FAFAF6}
 .data-notice-box table tr:last-child td{border-bottom:none}
 .data-notice-box table tr:hover td{background:transparent}
 .data-notice-box .notice-footnote{margin-top:10px;color:var(--text-tertiary);font-size:11px;line-height:1.7}
-
-/* フッター */
 footer{max-width:980px;margin:0 auto;padding:0 24px}
 .source{font-size:11px;color:var(--text-tertiary);border-top:1px solid var(--border);padding-top:16px;line-height:1.8}
-
 @media(max-width:640px){
   header{padding:24px 20px 20px}
   .kpi-bar{grid-template-columns:1fr 1fr}
@@ -111,19 +87,19 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
   <p class="subtitle">出典：長崎市オープンデータ（BODIK）　分析：あいぜん不動産</p>
 </header>
 
-<!-- KPIバー：社会増減の内訳を補足表示して+765と+728の関係を明示 -->
+<!-- KPIバー：修正済み（社会増減▲728・人口増減▲4,998） -->
 <div class="kpi-bar">
   <div class="kpi-item">
-    <div class="kpi-num green">＋728人</div>
-    <div class="kpi-label">2025年<br>社会増減（初のプラス転換）</div>
-    <div class="kpi-breakdown">県外転入超過 ＋765人<br>県内転出超過 ▲37人</div>
+    <div class="kpi-num red">▲728人</div>
+    <div class="kpi-label">2025年<br>社会増減（転出超過）</div>
+    <div class="kpi-breakdown">県外転出超過 ▲765人<br>県内転入超過 ＋37人</div>
   </div>
   <div class="kpi-item">
     <div class="kpi-num red">▲4,270人</div>
     <div class="kpi-label">2025年<br>自然減（死亡超過）</div>
   </div>
   <div class="kpi-item">
-    <div class="kpi-num amber">▲3,542人</div>
+    <div class="kpi-num red">▲4,998人</div>
     <div class="kpi-label">2025年<br>人口増減（合計）</div>
   </div>
   <div class="kpi-item">
@@ -144,10 +120,10 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
     <button class="tab-btn meta" onclick="switchTab('tab8',this)">📋 データ定義・出典</button>
   </div>
 
-  <!-- タブ1: 月次転入・転出 -->
+  <!-- タブ1 -->
   <div id="tab1" class="tab-panel active">
     <div class="insight blue">
-      <strong>確認ポイント：</strong>3〜4月に転入・転出ともに急増するパターンが毎年繰り返されている。これは進学・就職・転勤シーズンによるもの。2025年は長崎市オープンデータ（BODIK）ベース（日本人＋外国人・国際移動含む）で年間転入超過（＋728人）に転換した。なお、日本人・国内移動のみを集計するe-Statでは2025年も転出超過（▲1,327人）。両統計はデータの定義が異なるため、「📋 データ定義・出典」タブを参照されたい。
+      <strong>確認ポイント：</strong>3〜4月に転入・転出ともに急増するパターンが毎年繰り返されている。これは進学・就職・転勤シーズンによるもの。2025年は長崎市オープンデータ（BODIK）ベース（日本人＋外国人・国際移動含む）で年間転出超過（▲728人）。なお、日本人・国内移動のみを集計するe-Statでは2025年も転出超過（▲1,327人）。両統計はデータの定義が異なるため、「📋 データ定義・出典」タブを参照されたい。
     </div>
     <div class="chart-card">
       <p class="chart-label">月次 県外転入・転出の推移（2022〜2025年）</p>
@@ -160,21 +136,19 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.4)"></div><span class="leg-type">棒</span>転出超過（月）</div>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <table id="tbl1"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl1"></table></div>
   </div>
 
-  <!-- タブ2: 人口増減の分解 -->
+  <!-- タブ2 -->
   <div id="tab2" class="tab-panel">
     <div class="insight red">
       <strong>グラフの見方：</strong>このグラフは「年間の人口増減」を2つの要因に分解しています。<br>
-      <strong>自然増減</strong>（赤棒）＝ 出生者数 − 死亡者数　→ 詳細は「③-③ 自然増減」タブ<br>
-      <strong>社会増減</strong>（青棒）＝ 転入者数 − 転出者数　→ 内訳は下の第2グラフ・および「③-① 県外転出入」「③-② 県内転出入」タブ<br>
-      <strong>重要な発見：</strong>2025年に社会増減がプラスに転換したにもかかわらず人口が減り続けているのは、死亡者数が出生者数を年間約4,270人上回る<strong>自然減が主因</strong>であるため。
+      <strong>自然増減</strong>（赤棒）＝ 出生者数 − 死亡者数<br>
+      <strong>社会増減</strong>（青棒）＝ 転入者数 − 転出者数（県外＋県内）<br>
+      <strong>重要：</strong>人口が減り続けているのは、死亡者数が出生者数を年間約4,000〜4,300人上回る<strong>自然減が主因</strong>。社会増減は年によって変動する。
     </div>
     <div class="chart-card">
-      <p class="chart-label">年次 人口増減の内訳（2022〜2025年）※2026年は年間未完のため除く</p>
+      <p class="chart-label">年次 人口増減の内訳（2022〜2025年）</p>
       <p class="chart-unit">単位：人（縦軸の「千」＝1,000人）</p>
       <canvas id="chart2" height="300"></canvas>
       <div class="legend">
@@ -183,23 +157,19 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-line" style="background:#1A1916;height:3px"></div><span class="leg-type">折れ線</span>人口増減（合計）</div>
       </div>
     </div>
-
     <div class="insight" style="border-left-color:var(--purple);background:#F5EEF8">
-      <strong>2025年の社会増減＋728人の内訳：</strong><br>
-      県外転入超過：<strong style="color:var(--green)">＋765人</strong>　
-      県内転出超過：<strong style="color:var(--red)">▲37人</strong><br>
-      一方、外国人在住人口は2025年末に5,487人（前年末比＋578人）と増加しており、社会増減のプラス転換に寄与していると考えられます。
+      <strong>2025年の社会増減▲728人の内訳：</strong><br>
+      県外転出超過：<strong style="color:var(--red)">▲765人</strong>　
+      県内転入超過：<strong style="color:var(--green)">＋37人</strong><br>
+      なお外国人在住人口は2025年末に5,487人（前年末比＋578人）と増加しており、社会減の抑制に寄与していると考えられます。
     </div>
-
-    <div class="tbl-wrap">
-      <table id="tbl2"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl2"></table></div>
   </div>
 
-  <!-- タブ3: 県外転入・転出年次 -->
+  <!-- タブ3 -->
   <div id="tab3" class="tab-panel">
-    <div class="insight green">
-      <strong>仮説Dの検証①：</strong>2025年に県外転入が県外転出を初めて上回った（＋765人）。2023年・2024年の転出超過は主に県外との移動によるものであり、県内移動（仮説D）の影響は小さかった可能性がある。
+    <div class="insight red">
+      <strong>県外転出入の状況：</strong>2022〜2024年は県外からの転入が転出を上回る転入超過が続いていた（BODIKベース・外国人含む）。2025年は転出が転入を上回り▲765人の転出超過に転換した。
     </div>
     <div class="chart-card">
       <p class="chart-label">年次 県外転入・転出・転入超過の推移（2022〜2025年）</p>
@@ -212,15 +182,13 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.4)"></div><span class="leg-type">棒</span>転出超過</div>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <table id="tbl3"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl3"></table></div>
   </div>
 
-  <!-- タブ4: 県内転入・転出 -->
+  <!-- タブ4 -->
   <div id="tab4" class="tab-panel">
     <div class="insight blue">
-      <strong>仮説Dの検証②：</strong>長崎市から長崎県内の他市町への転出超過は毎年発生しているが、規模は小さい（年間30〜400人程度）。仮説Dは部分的には成立するが、主要因とまでは言えない。
+      <strong>県内転出入の状況：</strong>長崎市から長崎県内の他市町への転出超過は2022〜2024年に発生していたが、2025年は転入超過（＋37人）に転換した。規模は小さく（年間数十〜数百人程度）、社会増減全体への影響は限定的。
     </div>
     <div class="chart-card">
       <p class="chart-label">月次 県内転入・転出の推移（長崎市↔長崎県内他市町）</p>
@@ -233,15 +201,13 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.35)"></div><span class="leg-type">棒</span>転出超過</div>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <table id="tbl4"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl4"></table></div>
   </div>
 
-  <!-- タブ5: 自然増減（死亡・出生） -->
+  <!-- タブ5 -->
   <div id="tab5" class="tab-panel">
     <div class="insight red">
-      <strong>人口減少の本質：</strong>年間の死亡者数は約5,900〜6,100人で推移し、出生者数（約1,800〜2,400人）を大幅に上回る。自然減は年間▲3,300〜▲4,300人規模であり、社会増減がプラスになっても人口全体の減少は止まらない構造になっている。
+      <strong>人口減少の本質：</strong>年間の死亡者数は約5,900〜6,100人で推移し、出生者数（約1,800〜2,400人）を大幅に上回る。自然減は年間▲3,300〜▲4,300人規模であり、社会増減が改善しても人口全体の減少は続く構造になっている。
     </div>
     <div class="chart-card">
       <p class="chart-label">月次 出生・死亡の推移（2022〜2026年3月）</p>
@@ -253,15 +219,13 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.35)"></div><span class="leg-type">棒</span>自然減（死亡超過）</div>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <table id="tbl5"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl5"></table></div>
   </div>
 
-  <!-- タブ6: 外国人人口 -->
+  <!-- タブ6 -->
   <div id="tab6" class="tab-panel">
     <div class="insight" style="border-left-color:var(--purple);background:#F5EEF8">
-      <strong>注目：</strong>長崎市の外国人人口は2022年末3,607人から2025年末5,487人へ<strong>3年間で約1,900人増加（＋52%）</strong>。増加が著しいのはネパール（＋2倍超）・フィリピン（＋2倍超）・インドネシア（＋7倍）。外国人の増加が社会増減のプラス転換に一定程度貢献している可能性がある。
+      <strong>注目：</strong>長崎市の外国人人口は2022年末3,607人から2025年末5,487人へ<strong>3年間で約1,900人増加（＋52%）</strong>。増加が著しいのはネパール（＋2倍超）・フィリピン（＋2倍超）・インドネシア（＋7倍）。外国人の国際移動がBODIKの転入数を押し上げ、e-Statとの差異の主因となっている。
     </div>
     <div class="chart-card">
       <p class="chart-label">月次 外国人人口の推移（2022〜2025年）</p>
@@ -287,12 +251,10 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-bar" style="background:#95A5A6"></div><span class="leg-type">棒</span>その他</div>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <table id="tbl6"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl6"></table></div>
   </div>
 
-  <!-- タブ7: 年齢別転入超過 -->
+  <!-- タブ7 -->
   <div id="tab7" class="tab-panel">
     <div class="insight" style="border-left-color:#2C7BB6;background:#EBF5FB">
       <strong>出典補足：</strong>このタブのデータはe-Stat「住民基本台帳人口移動報告」（国内市区町村間移動のみ）です。国外からの転入（外国人新規入国など）は含まれないため、BODIKの数値とは異なります。傾向・構造の把握に活用してください。
@@ -320,47 +282,34 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
         <div class="legend-item"><div class="leg-bar" style="background:rgba(192,57,43,0.5)"></div><span class="leg-type">棒</span>転出（2025）</div>
       </div>
     </div>
-    <div class="tbl-wrap">
-      <table id="tbl7"></table>
-    </div>
+    <div class="tbl-wrap"><table id="tbl7"></table></div>
   </div>
 
-  <!-- タブ8: データ定義・出典（移動してきた黄色ボックス） -->
+  <!-- タブ8: データ定義 -->
   <div id="tab8" class="tab-panel">
     <div class="data-notice-box">
       <div class="notice-title">📋 このダッシュボードが使用するデータについて</div>
       このダッシュボードは<strong>長崎市オープンデータ（BODIK）</strong>に基づいています。BODIKのデータは住民基本台帳に登録されたすべての人（日本人・外国人）の転入出を集計しており、国外からの転入・国外への転出も含みます。<br><br>
-      一方、総務省e-Stat「住民基本台帳人口移動報告」は<strong>日本人・国内移動のみ</strong>を集計した別の統計です。2025年の長崎市の数値はe-Statでは転出超過（▲1,327人）であり、BODIKの転入超過（＋728人）と逆の結果になっていますが、これは矛盾ではなく、集計対象の定義が異なることによるものです。<br>
+      一方、総務省e-Stat「住民基本台帳人口移動報告」は<strong>日本人・国内移動のみ</strong>を集計した別の統計です。2025年の長崎市の数値はe-Statでは転出超過（▲1,327人）であり、BODIKの転出超過（▲728人）と差がありますが、これは矛盾ではなく、集計対象の定義が異なることによるものです。
       <table>
-        <thead>
-          <tr>
-            <th>比較項目</th>
-            <th>このダッシュボード（BODIK）</th>
-            <th>e-Stat 住民基本台帳人口移動報告</th>
-          </tr>
-        </thead>
+        <thead><tr><th>比較項目</th><th>このダッシュボード（BODIK）</th><th>e-Stat 住民基本台帳人口移動報告</th></tr></thead>
         <tbody>
           <tr><td>集計対象者</td><td>日本人＋外国人</td><td>日本人のみ</td></tr>
           <tr><td>移動の範囲</td><td>国内移動＋国外との移動を含む</td><td>国内市区町村間移動のみ</td></tr>
-          <tr><td>2025年 転入数</td><td>12,761人</td><td>9,733人</td></tr>
-          <tr><td>2025年 転出数</td><td>12,033人</td><td>11,060人</td></tr>
-          <tr><td>2025年 社会増減</td><td><strong style="color:#1E8449">＋728人（転入超過）</strong></td><td><strong style="color:#C0392B">▲1,327人（転出超過）</strong></td></tr>
+          <tr><td>2025年 転入数</td><td>12,033人</td><td>9,733人</td></tr>
+          <tr><td>2025年 転出数</td><td>12,761人</td><td>11,060人</td></tr>
+          <tr><td>2025年 社会増減</td><td><strong style="color:#C0392B">▲728人（転出超過）</strong></td><td><strong style="color:#C0392B">▲1,327人（転出超過）</strong></td></tr>
         </tbody>
       </table>
-      <div class="notice-footnote">
-        ※転入数の差（約3,000人）・転出数の差（約1,000人）は、主に外国人の国内移動および国際移動（新規入国・出国）によるものと推定されます。BODIKの外国人在住人口は2025年末に前年末比＋578人（5,487人）増加しており、社会増減のプラス転換に寄与したと考えられます。外国人の転入出数を月次で直接検証するデータは現時点では非公開です。
-      </div>
+      <div class="notice-footnote">※両統計の差（転入約3,300人・転出約1,700人）は、主に外国人の国際移動（新規入国・出国）によるものと推定されます。</div>
     </div>
-
     <div class="data-notice-box" style="border-left-color:#888;background:#F8F8F8;border-color:#DDD">
       <div class="notice-title" style="color:#555">📂 出典一覧</div>
-      <strong>出典①（BODIKタブ全般）：</strong>長崎市オープンデータ（BODIK）人口動態【各月】・県外転入出者数【各月】・県内転入出者数【各月】・外国人人口統計　ライセンス：CC BY<br><br>
-      <strong>出典②（⑤年齢別転入超過タブのみ）：</strong>e-Stat「住民基本台帳人口移動報告」2025年（年齢別転入超過タブのみ使用）<br><br>
-      ※出典①（BODIK）と出典②（e-Stat）はデータの定義（対象者・移動範囲）が異なります。詳細は上記の比較表を参照してください。<br>
+      <strong>出典①（BODIKタブ全般）：</strong>長崎市オープンデータ（BODIK）県外転入者数・県外転出者数・県内転入者数・県内転出者数【各月】・外国人人口統計　ライセンス：CC BY<br><br>
+      <strong>出典②（⑤年齢別転入超過タブのみ）：</strong>e-Stat「住民基本台帳人口移動報告」2025年<br><br>
       分析補助：Claude（Anthropic）　作成：あいぜん不動産　© 2026
     </div>
   </div>
-
 </main>
 
 <footer>
@@ -371,57 +320,54 @@ footer{max-width:980px;margin:0 auto;padding:0 24px}
 </footer>
 
 <script>
-// ===== データ =====
+// ============================================================
+// 修正済みデータ（2026年6月1日修正）
+// 転入・転出の変数割り当てを全年分修正
+// 旧: oi=転入変数・oo=転出変数（誤）
+// 正: oi=転入（旧ooの値）・oo=転出（旧oiの値）
+// 同様に ii↔io も修正
+// ============================================================
 const RAW = {
-  oi:[{y:2022,m:1,v:403},{y:2022,m:2,v:395},{y:2022,m:3,v:1454},{y:2022,m:4,v:697},{y:2022,m:5,v:456},{y:2022,m:6,v:508},{y:2022,m:7,v:534},{y:2022,m:8,v:527},{y:2022,m:9,v:519},{y:2022,m:10,v:496},{y:2022,m:11,v:494},{y:2022,m:12,v:429},{y:2023,m:1,v:584},{y:2023,m:2,v:638},{y:2023,m:3,v:2699},{y:2023,m:4,v:893},{y:2023,m:5,v:540},{y:2023,m:6,v:531},{y:2023,m:7,v:558},{y:2023,m:8,v:537},{y:2023,m:9,v:432},{y:2023,m:10,v:355},{y:2023,m:11,v:313},{y:2023,m:12,v:329},{y:2024,m:1,v:457},{y:2024,m:2,v:372},{y:2024,m:3,v:1401},{y:2024,m:4,v:866},{y:2024,m:5,v:540},{y:2024,m:6,v:517},{y:2024,m:7,v:596},{y:2024,m:8,v:576},{y:2024,m:9,v:538},{y:2024,m:10,v:512},{y:2024,m:11,v:439},{y:2024,m:12,v:258},{y:2025,m:1,v:411},{y:2025,m:2,v:595},{y:2025,m:3,v:2490},{y:2025,m:4,v:1265},{y:2025,m:5,v:570},{y:2025,m:6,v:523},{y:2025,m:7,v:569},{y:2025,m:8,v:599},{y:2025,m:9,v:521},{y:2025,m:10,v:450},{y:2025,m:11,v:311},{y:2025,m:12,v:399},{y:2026,m:1,v:432},{y:2026,m:2,v:416},{y:2026,m:3,v:1564}],
-  oo:[{y:2022,m:1,v:415},{y:2022,m:2,v:423},{y:2022,m:3,v:2695},{y:2022,m:4,v:760},{y:2022,m:5,v:511},{y:2022,m:6,v:487},{y:2022,m:7,v:511},{y:2022,m:8,v:487},{y:2022,m:9,v:476},{y:2022,m:10,v:534},{y:2022,m:11,v:486},{y:2022,m:12,v:249},{y:2023,m:1,v:674},{y:2023,m:2,v:808},{y:2023,m:3,v:3746},{y:2023,m:4,v:914},{y:2023,m:5,v:561},{y:2023,m:6,v:554},{y:2023,m:7,v:575},{y:2023,m:8,v:539},{y:2023,m:9,v:443},{y:2023,m:10,v:378},{y:2023,m:11,v:350},{y:2023,m:12,v:311},{y:2024,m:1,v:528},{y:2024,m:2,v:625},{y:2024,m:3,v:2571},{y:2024,m:4,v:1172},{y:2024,m:5,v:605},{y:2024,m:6,v:597},{y:2024,m:7,v:642},{y:2024,m:8,v:600},{y:2024,m:9,v:537},{y:2024,m:10,v:516},{y:2024,m:11,v:451},{y:2024,m:12,v:338},{y:2025,m:1,v:504},{y:2025,m:2,v:373},{y:2025,m:3,v:1600},{y:2025,m:4,v:1560},{y:2025,m:5,v:525},{y:2025,m:6,v:515},{y:2025,m:7,v:531},{y:2025,m:8,v:418},{y:2025,m:9,v:719},{y:2025,m:10,v:497},{y:2025,m:11,v:321},{y:2025,m:12,v:375},{y:2026,m:1,v:466},{y:2026,m:2,v:625},{y:2026,m:3,v:2571}],
-  ii:[{y:2022,m:1,v:316},{y:2022,m:2,v:260},{y:2022,m:3,v:853},{y:2022,m:4,v:432},{y:2022,m:5,v:289},{y:2022,m:6,v:286},{y:2022,m:7,v:316},{y:2022,m:8,v:316},{y:2022,m:9,v:303},{y:2022,m:10,v:332},{y:2022,m:11,v:296},{y:2022,m:12,v:281},{y:2023,m:1,v:317},{y:2023,m:2,v:254},{y:2023,m:3,v:878},{y:2023,m:4,v:477},{y:2023,m:5,v:322},{y:2023,m:6,v:301},{y:2023,m:7,v:327},{y:2023,m:8,v:319},{y:2023,m:9,v:289},{y:2023,m:10,v:297},{y:2023,m:11,v:305},{y:2023,m:12,v:285},{y:2024,m:1,v:320},{y:2024,m:2,v:228},{y:2024,m:3,v:821},{y:2024,m:4,v:437},{y:2024,m:5,v:323},{y:2024,m:6,v:316},{y:2024,m:7,v:337},{y:2024,m:8,v:337},{y:2024,m:9,v:302},{y:2024,m:10,v:316},{y:2024,m:11,v:293},{y:2024,m:12,v:205},{y:2025,m:1,v:215},{y:2025,m:2,v:228},{y:2025,m:3,v:1077},{y:2025,m:4,v:534},{y:2025,m:5,v:268},{y:2025,m:6,v:197},{y:2025,m:7,v:292},{y:2025,m:8,v:273},{y:2025,m:9,v:243},{y:2025,m:10,v:290},{y:2025,m:11,v:218},{y:2025,m:12,v:223},{y:2026,m:1,v:213},{y:2026,m:2,v:303},{y:2026,m:3,v:1095}],
-  io:[{y:2022,m:1,v:350},{y:2022,m:2,v:299},{y:2022,m:3,v:935},{y:2022,m:4,v:440},{y:2022,m:5,v:313},{y:2022,m:6,v:309},{y:2022,m:7,v:345},{y:2022,m:8,v:344},{y:2022,m:9,v:317},{y:2022,m:10,v:363},{y:2022,m:11,v:323},{y:2022,m:12,v:450},{y:2023,m:1,v:329},{y:2023,m:2,v:265},{y:2023,m:3,v:923},{y:2023,m:4,v:499},{y:2023,m:5,v:340},{y:2023,m:6,v:313},{y:2023,m:7,v:343},{y:2023,m:8,v:337},{y:2023,m:9,v:298},{y:2023,m:10,v:292},{y:2023,m:11,v:314},{y:2023,m:12,v:372},{y:2024,m:1,v:332},{y:2024,m:2,v:237},{y:2024,m:3,v:875},{y:2024,m:4,v:457},{y:2024,m:5,v:337},{y:2024,m:6,v:319},{y:2024,m:7,v:363},{y:2024,m:8,v:356},{y:2024,m:9,v:314},{y:2024,m:10,v:325},{y:2024,m:11,v:305},{y:2024,m:12,v:358},{y:2025,m:1,v:199},{y:2025,m:2,v:208},{y:2025,m:3,v:1227},{y:2025,m:4,v:690},{y:2025,m:5,v:229},{y:2025,m:6,v:246},{y:2025,m:7,v:275},{y:2025,m:8,v:231},{y:2025,m:9,v:186},{y:2025,m:10,v:222},{y:2025,m:11,v:175},{y:2025,m:12,v:207},{y:2026,m:1,v:248},{y:2026,m:2,v:228},{y:2026,m:3,v:1142}],
+  // 県外転入（旧ooの値を移動）
+  oi:[{y:2022,m:1,v:415},{y:2022,m:2,v:423},{y:2022,m:3,v:2695},{y:2022,m:4,v:760},{y:2022,m:5,v:511},{y:2022,m:6,v:487},{y:2022,m:7,v:511},{y:2022,m:8,v:487},{y:2022,m:9,v:476},{y:2022,m:10,v:534},{y:2022,m:11,v:486},{y:2022,m:12,v:249},{y:2023,m:1,v:674},{y:2023,m:2,v:808},{y:2023,m:3,v:3746},{y:2023,m:4,v:914},{y:2023,m:5,v:561},{y:2023,m:6,v:554},{y:2023,m:7,v:575},{y:2023,m:8,v:539},{y:2023,m:9,v:443},{y:2023,m:10,v:378},{y:2023,m:11,v:350},{y:2023,m:12,v:311},{y:2024,m:1,v:528},{y:2024,m:2,v:625},{y:2024,m:3,v:2571},{y:2024,m:4,v:1172},{y:2024,m:5,v:605},{y:2024,m:6,v:597},{y:2024,m:7,v:642},{y:2024,m:8,v:600},{y:2024,m:9,v:537},{y:2024,m:10,v:516},{y:2024,m:11,v:451},{y:2024,m:12,v:338},{y:2025,m:1,v:504},{y:2025,m:2,v:373},{y:2025,m:3,v:1600},{y:2025,m:4,v:1560},{y:2025,m:5,v:525},{y:2025,m:6,v:515},{y:2025,m:7,v:531},{y:2025,m:8,v:418},{y:2025,m:9,v:719},{y:2025,m:10,v:497},{y:2025,m:11,v:321},{y:2025,m:12,v:375},{y:2026,m:1,v:466},{y:2026,m:2,v:625},{y:2026,m:3,v:2571}],
+  // 県外転出（旧oiの値を移動）
+  oo:[{y:2022,m:1,v:403},{y:2022,m:2,v:395},{y:2022,m:3,v:1454},{y:2022,m:4,v:697},{y:2022,m:5,v:456},{y:2022,m:6,v:508},{y:2022,m:7,v:534},{y:2022,m:8,v:527},{y:2022,m:9,v:519},{y:2022,m:10,v:496},{y:2022,m:11,v:494},{y:2022,m:12,v:429},{y:2023,m:1,v:584},{y:2023,m:2,v:638},{y:2023,m:3,v:2699},{y:2023,m:4,v:893},{y:2023,m:5,v:540},{y:2023,m:6,v:531},{y:2023,m:7,v:558},{y:2023,m:8,v:537},{y:2023,m:9,v:432},{y:2023,m:10,v:355},{y:2023,m:11,v:313},{y:2023,m:12,v:329},{y:2024,m:1,v:457},{y:2024,m:2,v:372},{y:2024,m:3,v:1401},{y:2024,m:4,v:866},{y:2024,m:5,v:540},{y:2024,m:6,v:517},{y:2024,m:7,v:596},{y:2024,m:8,v:576},{y:2024,m:9,v:538},{y:2024,m:10,v:512},{y:2024,m:11,v:439},{y:2024,m:12,v:258},{y:2025,m:1,v:411},{y:2025,m:2,v:595},{y:2025,m:3,v:2490},{y:2025,m:4,v:1265},{y:2025,m:5,v:570},{y:2025,m:6,v:523},{y:2025,m:7,v:569},{y:2025,m:8,v:599},{y:2025,m:9,v:521},{y:2025,m:10,v:450},{y:2025,m:11,v:311},{y:2025,m:12,v:399},{y:2026,m:1,v:432},{y:2026,m:2,v:416},{y:2026,m:3,v:1564}],
+  // 県内転入（旧ioの値を移動）
+  ii:[{y:2022,m:1,v:350},{y:2022,m:2,v:299},{y:2022,m:3,v:935},{y:2022,m:4,v:440},{y:2022,m:5,v:313},{y:2022,m:6,v:309},{y:2022,m:7,v:345},{y:2022,m:8,v:344},{y:2022,m:9,v:317},{y:2022,m:10,v:363},{y:2022,m:11,v:323},{y:2022,m:12,v:450},{y:2023,m:1,v:329},{y:2023,m:2,v:265},{y:2023,m:3,v:923},{y:2023,m:4,v:499},{y:2023,m:5,v:340},{y:2023,m:6,v:313},{y:2023,m:7,v:343},{y:2023,m:8,v:337},{y:2023,m:9,v:298},{y:2023,m:10,v:292},{y:2023,m:11,v:314},{y:2023,m:12,v:372},{y:2024,m:1,v:332},{y:2024,m:2,v:237},{y:2024,m:3,v:875},{y:2024,m:4,v:457},{y:2024,m:5,v:337},{y:2024,m:6,v:319},{y:2024,m:7,v:363},{y:2024,m:8,v:356},{y:2024,m:9,v:314},{y:2024,m:10,v:325},{y:2024,m:11,v:305},{y:2024,m:12,v:358},{y:2025,m:1,v:199},{y:2025,m:2,v:208},{y:2025,m:3,v:1227},{y:2025,m:4,v:690},{y:2025,m:5,v:229},{y:2025,m:6,v:246},{y:2025,m:7,v:275},{y:2025,m:8,v:231},{y:2025,m:9,v:186},{y:2025,m:10,v:222},{y:2025,m:11,v:175},{y:2025,m:12,v:207},{y:2026,m:1,v:248},{y:2026,m:2,v:228},{y:2026,m:3,v:1142}],
+  // 県内転出（旧iiの値を移動）
+  io:[{y:2022,m:1,v:316},{y:2022,m:2,v:260},{y:2022,m:3,v:853},{y:2022,m:4,v:432},{y:2022,m:5,v:289},{y:2022,m:6,v:286},{y:2022,m:7,v:316},{y:2022,m:8,v:316},{y:2022,m:9,v:303},{y:2022,m:10,v:332},{y:2022,m:11,v:296},{y:2022,m:12,v:281},{y:2023,m:1,v:317},{y:2023,m:2,v:254},{y:2023,m:3,v:878},{y:2023,m:4,v:477},{y:2023,m:5,v:322},{y:2023,m:6,v:301},{y:2023,m:7,v:327},{y:2023,m:8,v:319},{y:2023,m:9,v:289},{y:2023,m:10,v:297},{y:2023,m:11,v:305},{y:2023,m:12,v:285},{y:2024,m:1,v:320},{y:2024,m:2,v:228},{y:2024,m:3,v:821},{y:2024,m:4,v:437},{y:2024,m:5,v:323},{y:2024,m:6,v:316},{y:2024,m:7,v:337},{y:2024,m:8,v:337},{y:2024,m:9,v:302},{y:2024,m:10,v:316},{y:2024,m:11,v:293},{y:2024,m:12,v:205},{y:2025,m:1,v:215},{y:2025,m:2,v:228},{y:2025,m:3,v:1077},{y:2025,m:4,v:534},{y:2025,m:5,v:268},{y:2025,m:6,v:197},{y:2025,m:7,v:292},{y:2025,m:8,v:273},{y:2025,m:9,v:243},{y:2025,m:10,v:290},{y:2025,m:11,v:218},{y:2025,m:12,v:223},{y:2026,m:1,v:213},{y:2026,m:2,v:303},{y:2026,m:3,v:1095}],
   births:[{y:2022,m:1,v:196},{y:2022,m:2,v:179},{y:2022,m:3,v:206},{y:2022,m:4,v:210},{y:2022,m:5,v:225},{y:2022,m:6,v:208},{y:2022,m:7,v:210},{y:2022,m:8,v:194},{y:2022,m:9,v:196},{y:2022,m:10,v:218},{y:2022,m:11,v:197},{y:2022,m:12,v:210},{y:2023,m:1,v:201},{y:2023,m:2,v:170},{y:2023,m:3,v:179},{y:2023,m:4,v:183},{y:2023,m:5,v:185},{y:2023,m:6,v:191},{y:2023,m:7,v:202},{y:2023,m:8,v:172},{y:2023,m:9,v:178},{y:2023,m:10,v:181},{y:2023,m:11,v:181},{y:2023,m:12,v:163},{y:2024,m:1,v:165},{y:2024,m:2,v:144},{y:2024,m:3,v:158},{y:2024,m:4,v:170},{y:2024,m:5,v:160},{y:2024,m:6,v:156},{y:2024,m:7,v:171},{y:2024,m:8,v:168},{y:2024,m:9,v:149},{y:2024,m:10,v:164},{y:2024,m:11,v:162},{y:2024,m:12,v:137},{y:2025,m:1,v:141},{y:2025,m:2,v:148},{y:2025,m:3,v:163},{y:2025,m:4,v:168},{y:2025,m:5,v:151},{y:2025,m:6,v:157},{y:2025,m:7,v:156},{y:2025,m:8,v:157},{y:2025,m:9,v:158},{y:2025,m:10,v:151},{y:2025,m:11,v:137},{y:2025,m:12,v:158},{y:2026,m:1,v:165},{y:2026,m:2,v:120},{y:2026,m:3,v:181}],
   deaths:[{y:2022,m:1,v:520},{y:2022,m:2,v:475},{y:2022,m:3,v:489},{y:2022,m:4,v:450},{y:2022,m:5,v:457},{y:2022,m:6,v:443},{y:2022,m:7,v:466},{y:2022,m:8,v:480},{y:2022,m:9,v:440},{y:2022,m:10,v:508},{y:2022,m:11,v:524},{y:2022,m:12,v:588},{y:2023,m:1,v:620},{y:2023,m:2,v:514},{y:2023,m:3,v:557},{y:2023,m:4,v:456},{y:2023,m:5,v:461},{y:2023,m:6,v:440},{y:2023,m:7,v:480},{y:2023,m:8,v:496},{y:2023,m:9,v:441},{y:2023,m:10,v:500},{y:2023,m:11,v:488},{y:2023,m:12,v:506},{y:2024,m:1,v:561},{y:2024,m:2,v:497},{y:2024,m:3,v:490},{y:2024,m:4,v:463},{y:2024,m:5,v:484},{y:2024,m:6,v:449},{y:2024,m:7,v:488},{y:2024,m:8,v:512},{y:2024,m:9,v:469},{y:2024,m:10,v:530},{y:2024,m:11,v:503},{y:2024,m:12,v:595},{y:2025,m:1,v:604},{y:2025,m:2,v:498},{y:2025,m:3,v:502},{y:2025,m:4,v:461},{y:2025,m:5,v:464},{y:2025,m:6,v:465},{y:2025,m:7,v:492},{y:2025,m:8,v:525},{y:2025,m:9,v:445},{y:2025,m:10,v:491},{y:2025,m:11,v:483},{y:2025,m:12,v:685},{y:2026,m:1,v:588},{y:2026,m:2,v:525},{y:2026,m:3,v:509}],
 };
 
-// ===== ユーティリティ =====
-const YEARS = [2022,2023,2024,2025,2026];
-const MONTHS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+const YEARS=[2022,2023,2024,2025,2026];
+function getYearTotal(arr,year){return arr.filter(r=>r.y===year).reduce((s,r)=>s+r.v,0);}
+function fmtAbs(n){return n>=0?'+'+n.toLocaleString():'▲'+Math.abs(n).toLocaleString();}
+function fmt(n){return(n>=0?'+':'')+n.toLocaleString();}
 
-function getMonthly(arr, year) {
-  const result = new Array(12).fill(null);
-  arr.filter(r=>r.y===year).forEach(r=>result[r.m-1]=r.v);
-  return result;
-}
-function getYearTotal(arr, year) { return arr.filter(r=>r.y===year).reduce((s,r)=>s+r.v,0); }
-function fmt(n) { return (n>=0?'+':'')+n.toLocaleString(); }
-function fmtAbs(n) { return n>=0?'+'+n.toLocaleString():'▲'+Math.abs(n).toLocaleString(); }
-
-const ALL_LABELS = [];
-YEARS.forEach(y=>{
-  const maxM = y===2026?3:12;
-  for(let m=1;m<=maxM;m++) ALL_LABELS.push(`${y}/${m}`);
-});
-function getAllMonthly(arr) {
+const ALL_LABELS=[];
+YEARS.forEach(y=>{const maxM=y===2026?3:12;for(let m=1;m<=maxM;m++)ALL_LABELS.push(`${y}/${m}`);});
+function getAllMonthly(arr){
   return ALL_LABELS.map(label=>{
-    const [y,m] = label.split('/').map(Number);
-    const r = arr.find(d=>d.y===y&&d.m===m);
+    const[y,m]=label.split('/').map(Number);
+    const r=arr.find(d=>d.y===y&&d.m===m);
     return r!=null?r.v:null;
   });
 }
 
-const yearDivPlugin = {
+const yearDivPlugin={
   id:'yearDiv',
   afterDraw(chart){
-    const {ctx,chartArea:{top,bottom},scales:{x}} = chart;
-    const divs = [11.5, 23.5, 35.5, 47.5];
-    divs.forEach(idx=>{
-      if(idx < ALL_LABELS.length){
-        const xPos = x.getPixelForValue(idx);
+    const{ctx,chartArea:{top,bottom},scales:{x}}=chart;
+    [11.5,23.5,35.5,47.5].forEach(idx=>{
+      if(idx<ALL_LABELS.length){
+        const xPos=x.getPixelForValue(idx);
         ctx.save();ctx.strokeStyle='rgba(0,0,0,0.12)';ctx.lineWidth=1;ctx.setLineDash([4,4]);
         ctx.beginPath();ctx.moveTo(xPos,top);ctx.lineTo(xPos,bottom);ctx.stroke();ctx.restore();
       }
     });
-    const centers = [{idx:5.5,yr:2022},{idx:17.5,yr:2023},{idx:29.5,yr:2024},{idx:41.5,yr:2025},{idx:49,yr:2026}];
-    centers.forEach(({idx,yr})=>{
-      if(idx < ALL_LABELS.length){
+    [{idx:5.5,yr:2022},{idx:17.5,yr:2023},{idx:29.5,yr:2024},{idx:41.5,yr:2025},{idx:49,yr:2026}].forEach(({idx,yr})=>{
+      if(idx<ALL_LABELS.length){
         const xPos=x.getPixelForValue(idx);
         ctx.save();ctx.font='bold 13px "Noto Sans JP"';ctx.fillStyle='rgba(0,0,0,0.55)';ctx.textAlign='center';
         ctx.fillText(`${yr}年`,xPos,top-10);ctx.restore();
@@ -430,15 +376,15 @@ const yearDivPlugin = {
   }
 };
 
-const yTickCallback = v => {
-  const abs = Math.abs(v);
-  if(abs===0) return '0';
-  const sign = v<0?'▲':'+';
-  if(abs>=1000) return sign+(abs/1000).toFixed(1)+'千';
+const yTickCallback=v=>{
+  const abs=Math.abs(v);
+  if(abs===0)return'0';
+  const sign=v<0?'▲':'+';
+  if(abs>=1000)return sign+(abs/1000).toFixed(1)+'千';
   return sign+abs;
 };
 
-const baseOpts = {
+const baseOpts={
   responsive:true,maintainAspectRatio:true,
   interaction:{mode:'index',intersect:false},
   plugins:{
@@ -463,260 +409,169 @@ const baseOpts = {
   }
 };
 
-// ===== チャート1 =====
+// チャート1
 (function(){
-  const oi = getAllMonthly(RAW.oi);
-  const oo = getAllMonthly(RAW.oo);
-  const excess = oi.map((v,i)=>v-oo[i]);
-  const ctx = document.getElementById('chart1').getContext('2d');
-  new Chart(ctx,{
+  const oi=getAllMonthly(RAW.oi);
+  const oo=getAllMonthly(RAW.oo);
+  const excess=oi.map((v,i)=>v-oo[i]);
+  new Chart(document.getElementById('chart1').getContext('2d'),{
     type:'bar',
-    data:{
-      labels:ALL_LABELS,
-      datasets:[
-        {type:'line',label:'転入（県外）',data:oi,borderColor:'#2C7BB6',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0,yAxisID:'y'},
-        {type:'line',label:'転出（県外）',data:oo,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0,yAxisID:'y'},
-        {type:'bar',label:'転入超過',data:excess.map(v=>v>0?v:0),backgroundColor:'rgba(30,132,73,0.5)',order:1,yAxisID:'y'},
-        {type:'bar',label:'転出超過',data:excess.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.4)',order:1,yAxisID:'y'},
-      ]
-    },
-    options:{...baseOpts,plugins:{...baseOpts.plugins}},
-    plugins:[yearDivPlugin]
+    data:{labels:ALL_LABELS,datasets:[
+      {type:'line',label:'転入（県外）',data:oi,borderColor:'#2C7BB6',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0,yAxisID:'y'},
+      {type:'line',label:'転出（県外）',data:oo,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0,yAxisID:'y'},
+      {type:'bar',label:'転入超過',data:excess.map(v=>v>0?v:0),backgroundColor:'rgba(30,132,73,0.5)',order:1,yAxisID:'y'},
+      {type:'bar',label:'転出超過',data:excess.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.4)',order:1,yAxisID:'y'},
+    ]},options:{...baseOpts},plugins:[yearDivPlugin]
   });
-
-  const tbl = document.getElementById('tbl1');
-  let html = '<thead><tr><th>年</th><th>転入（県外）</th><th>転出（県外）</th><th>転入超過</th><th>3月転入</th><th>3月転出</th></tr></thead><tbody>';
+  const tbl=document.getElementById('tbl1');
+  let html='<thead><tr><th>年</th><th>転入（県外）</th><th>転出（県外）</th><th>転入超過</th><th>3月転入</th><th>3月転出</th></tr></thead><tbody>';
   YEARS.forEach(yr=>{
     const oi=getYearTotal(RAW.oi,yr),oo=getYearTotal(RAW.oo,yr),ex=oi-oo;
     const mar_i=RAW.oi.find(r=>r.y===yr&&r.m===3)?.v||0;
     const mar_o=RAW.oo.find(r=>r.y===yr&&r.m===3)?.v||0;
-    const cls=ex>=0?'pos':'neg';
-    html+=`<tr><td>${yr}年</td><td>${oi.toLocaleString()}人</td><td>${oo.toLocaleString()}人</td><td class="${cls}">${fmtAbs(ex)}人</td><td>${mar_i.toLocaleString()}人</td><td>${mar_o.toLocaleString()}人</td></tr>`;
+    html+=`<tr><td>${yr}年</td><td>${oi.toLocaleString()}人</td><td>${oo.toLocaleString()}人</td><td class="${ex>=0?'pos':'neg'}">${fmtAbs(ex)}人</td><td>${mar_i.toLocaleString()}人</td><td>${mar_o.toLocaleString()}人</td></tr>`;
   });
-  tbl.innerHTML = html+'</tbody>';
+  tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== チャート2 =====
+// チャート2
 (function(){
-  const ctx = document.getElementById('chart2').getContext('2d');
-  const completeYears = [2022,2023,2024,2025];
-  const labels = completeYears.map(y=>y+'年');
-  const nat = completeYears.map(yr=>{
-    const b=getYearTotal(RAW.births,yr), d=getYearTotal(RAW.deaths,yr);
-    return b-d;
-  });
-  const soc = completeYears.map(yr=>{
+  const completeYears=[2022,2023,2024,2025];
+  const nat=completeYears.map(yr=>{const b=getYearTotal(RAW.births,yr),d=getYearTotal(RAW.deaths,yr);return b-d;});
+  const soc=completeYears.map(yr=>{
     const oi=getYearTotal(RAW.oi,yr),oo=getYearTotal(RAW.oo,yr);
     const ii=getYearTotal(RAW.ii,yr),io=getYearTotal(RAW.io,yr);
-    return (oi-oo)+(ii-io);
+    return(oi-oo)+(ii-io);
   });
-  const pop = nat.map((n,i)=>n+soc[i]);
-
-  new Chart(ctx,{
+  const pop=nat.map((n,i)=>n+soc[i]);
+  new Chart(document.getElementById('chart2').getContext('2d'),{
     type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {type:'bar',label:'自然増減',data:nat,backgroundColor:'rgba(192,57,43,0.7)',order:1},
-        {type:'bar',label:'社会増減',data:soc,backgroundColor:'rgba(44,123,182,0.7)',order:1},
-        {type:'line',label:'人口増減（合計）',data:pop,borderColor:'#1A1916',borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#1A1916',tension:.2,fill:false,order:0},
-      ]
-    },
-    options:{
-      ...baseOpts,
-      scales:{
-        x:{...baseOpts.scales.x},
-        y:{...baseOpts.scales.y,stacked:false}
-      }
-    }
+    data:{labels:completeYears.map(y=>y+'年'),datasets:[
+      {type:'bar',label:'自然増減',data:nat,backgroundColor:'rgba(192,57,43,0.7)',order:1},
+      {type:'bar',label:'社会増減',data:soc,backgroundColor:'rgba(44,123,182,0.7)',order:1},
+      {type:'line',label:'人口増減（合計）',data:pop,borderColor:'#1A1916',borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#1A1916',tension:.2,fill:false,order:0},
+    ]},options:{...baseOpts,scales:{x:{...baseOpts.scales.x},y:{...baseOpts.scales.y,stacked:false}}}
   });
-
-  const tbl = document.getElementById('tbl2');
-  let html = '<thead><tr><th>年</th><th>出生</th><th>死亡</th><th>自然増減</th><th>社会増減</th><th>人口増減</th></tr></thead><tbody>';
+  const tbl=document.getElementById('tbl2');
+  let html='<thead><tr><th>年</th><th>出生</th><th>死亡</th><th>自然増減</th><th>社会増減</th><th>人口増減</th></tr></thead><tbody>';
   completeYears.forEach((yr,i)=>{
     const b=getYearTotal(RAW.births,yr),d=getYearTotal(RAW.deaths,yr);
     html+=`<tr><td>${yr}年</td><td>${b.toLocaleString()}人</td><td>${d.toLocaleString()}人</td><td class="neg">▲${Math.abs(nat[i]).toLocaleString()}人</td><td class="${soc[i]>=0?'pos':'neg'}">${fmtAbs(soc[i])}人</td><td class="neg">▲${Math.abs(pop[i]).toLocaleString()}人</td></tr>`;
   });
-  tbl.innerHTML = html+'</tbody>';
+  tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== チャート3 =====
+// チャート3
 (function(){
-  const ctx = document.getElementById('chart3').getContext('2d');
-  const completeYears = [2022,2023,2024,2025];
-  const labels = completeYears.map(y=>y+'年');
-  const oi = completeYears.map(yr=>getYearTotal(RAW.oi,yr));
-  const oo = completeYears.map(yr=>getYearTotal(RAW.oo,yr));
-  const ex = oi.map((v,i)=>v-oo[i]);
-
-  new Chart(ctx,{
+  const completeYears=[2022,2023,2024,2025];
+  const oi=completeYears.map(yr=>getYearTotal(RAW.oi,yr));
+  const oo=completeYears.map(yr=>getYearTotal(RAW.oo,yr));
+  const ex=oi.map((v,i)=>v-oo[i]);
+  new Chart(document.getElementById('chart3').getContext('2d'),{
     type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {type:'line',label:'県外転入',data:oi,borderColor:'#2C7BB6',borderWidth:2,pointRadius:5,pointBackgroundColor:'#2C7BB6',tension:.2,fill:false,order:0},
-        {type:'line',label:'県外転出',data:oo,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:5,pointBackgroundColor:'#C0392B',tension:.2,fill:false,order:0},
-        {type:'bar',label:'転入超過',data:ex.map(v=>v>0?v:0),backgroundColor:'rgba(30,132,73,0.6)',order:1},
-        {type:'bar',label:'転出超過',data:ex.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.4)',order:1},
-      ]
-    },
-    options:{...baseOpts}
+    data:{labels:completeYears.map(y=>y+'年'),datasets:[
+      {type:'line',label:'県外転入',data:oi,borderColor:'#2C7BB6',borderWidth:2,pointRadius:5,pointBackgroundColor:'#2C7BB6',tension:.2,fill:false,order:0},
+      {type:'line',label:'県外転出',data:oo,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:5,pointBackgroundColor:'#C0392B',tension:.2,fill:false,order:0},
+      {type:'bar',label:'転入超過',data:ex.map(v=>v>0?v:0),backgroundColor:'rgba(30,132,73,0.6)',order:1},
+      {type:'bar',label:'転出超過',data:ex.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.4)',order:1},
+    ]},options:{...baseOpts}
   });
-
-  const tbl = document.getElementById('tbl3');
-  let html = '<thead><tr><th>年</th><th>県外転入</th><th>県外転出</th><th>転入超過</th><th>前年差</th></tr></thead><tbody>';
+  const tbl=document.getElementById('tbl3');
+  let html='<thead><tr><th>年</th><th>県外転入</th><th>県外転出</th><th>転入超過</th><th>前年差</th></tr></thead><tbody>';
   completeYears.forEach((yr,i)=>{
-    const diff = i>0?ex[i]-ex[i-1]:null;
+    const diff=i>0?ex[i]-ex[i-1]:null;
     const cls=ex[i]>=0?'pos':'neg';
     html+=`<tr><td>${yr}年</td><td>${oi[i].toLocaleString()}人</td><td>${oo[i].toLocaleString()}人</td><td class="${cls}">${fmtAbs(ex[i])}人</td><td>${diff!==null?(diff>=0?'<span class="pos">'+fmt(diff)+'人</span>':'<span class="neg">'+fmt(diff)+'人</span>'):'—'}</td></tr>`;
   });
-  tbl.innerHTML = html+'</tbody>';
+  tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== チャート4 =====
+// チャート4
 (function(){
-  const ii = getAllMonthly(RAW.ii);
-  const io = getAllMonthly(RAW.io);
-  const excess = ii.map((v,i)=>v-io[i]);
-  const ctx = document.getElementById('chart4').getContext('2d');
-  new Chart(ctx,{
+  const ii=getAllMonthly(RAW.ii);
+  const io=getAllMonthly(RAW.io);
+  const excess=ii.map((v,i)=>v-io[i]);
+  new Chart(document.getElementById('chart4').getContext('2d'),{
     type:'bar',
-    data:{
-      labels:ALL_LABELS,
-      datasets:[
-        {type:'line',label:'県内転入',data:ii,borderColor:'#2C7BB6',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
-        {type:'line',label:'県内転出',data:io,borderColor:'#D4A017',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
-        {type:'bar',label:'転入超過',data:excess.map(v=>v>0?v:0),backgroundColor:'rgba(30,132,73,0.5)',order:1},
-        {type:'bar',label:'転出超過',data:excess.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.35)',order:1},
-      ]
-    },
-    options:{...baseOpts},
-    plugins:[yearDivPlugin]
+    data:{labels:ALL_LABELS,datasets:[
+      {type:'line',label:'県内転入',data:ii,borderColor:'#2C7BB6',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
+      {type:'line',label:'県内転出',data:io,borderColor:'#D4A017',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
+      {type:'bar',label:'転入超過',data:excess.map(v=>v>0?v:0),backgroundColor:'rgba(30,132,73,0.5)',order:1},
+      {type:'bar',label:'転出超過',data:excess.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.35)',order:1},
+    ]},options:{...baseOpts},plugins:[yearDivPlugin]
   });
-
-  const tbl = document.getElementById('tbl4');
-  let html = '<thead><tr><th>年</th><th>県内転入</th><th>県内転出</th><th>転入超過</th><th>3月転入</th><th>3月転出</th></tr></thead><tbody>';
+  const tbl=document.getElementById('tbl4');
+  let html='<thead><tr><th>年</th><th>県内転入</th><th>県内転出</th><th>転入超過</th><th>3月転入</th><th>3月転出</th></tr></thead><tbody>';
   [2022,2023,2024,2025].forEach(yr=>{
     const ii=getYearTotal(RAW.ii,yr),io=getYearTotal(RAW.io,yr),ex=ii-io;
     const mar_i=RAW.ii.find(r=>r.y===yr&&r.m===3)?.v||0;
     const mar_o=RAW.io.find(r=>r.y===yr&&r.m===3)?.v||0;
     html+=`<tr><td>${yr}年</td><td>${ii.toLocaleString()}人</td><td>${io.toLocaleString()}人</td><td class="${ex>=0?'pos':'neg'}">${fmtAbs(ex)}人</td><td>${mar_i}人</td><td>${mar_o}人</td></tr>`;
   });
-  tbl.innerHTML = html+'</tbody>';
+  tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== チャート5 =====
+// チャート5
 (function(){
-  const births = getAllMonthly(RAW.births);
-  const deaths = getAllMonthly(RAW.deaths);
-  const nat = births.map((v,i)=>v-deaths[i]);
-  const ctx = document.getElementById('chart5').getContext('2d');
-  new Chart(ctx,{
+  const births=getAllMonthly(RAW.births);
+  const deaths=getAllMonthly(RAW.deaths);
+  const nat=births.map((v,i)=>v-deaths[i]);
+  new Chart(document.getElementById('chart5').getContext('2d'),{
     type:'bar',
-    data:{
-      labels:ALL_LABELS,
-      datasets:[
-        {type:'line',label:'出生',data:births,borderColor:'#2C7BB6',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
-        {type:'line',label:'死亡',data:deaths,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
-        {type:'bar',label:'自然減',data:nat.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.35)',order:1},
-      ]
-    },
-    options:{...baseOpts},
-    plugins:[yearDivPlugin]
+    data:{labels:ALL_LABELS,datasets:[
+      {type:'line',label:'出生',data:births,borderColor:'#2C7BB6',borderWidth:2,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
+      {type:'line',label:'死亡',data:deaths,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:4,tension:.3,fill:false,order:0},
+      {type:'bar',label:'自然減',data:nat.map(v=>v<0?v:0),backgroundColor:'rgba(192,57,43,0.35)',order:1},
+    ]},options:{...baseOpts},plugins:[yearDivPlugin]
   });
-
-  const tbl = document.getElementById('tbl5');
-  let html = '<thead><tr><th>年</th><th>出生</th><th>死亡</th><th>自然増減</th><th>月平均 出生</th><th>月平均 死亡</th></tr></thead><tbody>';
+  const tbl=document.getElementById('tbl5');
+  let html='<thead><tr><th>年</th><th>出生</th><th>死亡</th><th>自然増減</th><th>月平均 出生</th><th>月平均 死亡</th></tr></thead><tbody>';
   YEARS.forEach(yr=>{
     const b=getYearTotal(RAW.births,yr),d=getYearTotal(RAW.deaths,yr),nat=b-d;
-    const months = yr===2026?3:12;
-    const yrLabel = yr===2026?'2026年(1〜3月)':yr+'年';
+    const months=yr===2026?3:12;
+    const yrLabel=yr===2026?'2026年(1〜3月)':yr+'年';
     html+=`<tr><td>${yrLabel}</td><td>${b.toLocaleString()}人</td><td>${d.toLocaleString()}人</td><td class="neg">▲${Math.abs(nat).toLocaleString()}人</td><td>${Math.round(b/months)}人</td><td>${Math.round(d/months)}人</td></tr>`;
   });
-  tbl.innerHTML = html+'</tbody>';
+  tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== チャート6 =====
+// チャート6
 (function(){
-  const FG = {
-    2022: {total:[2776,2800,2877,2944,3001,3055,3098,3152,3216,3295,3430,3607],male:[1424,1437,1476,1509,1538,1574,1600,1631,1663,1703,1772,1860],female:[1352,1363,1401,1435,1463,1481,1498,1521,1553,1592,1658,1747],china:962,korea:305,phil:384,viet:469,nepal:344,indo:56,other:437},
-    2023: {total:[3560,3639,3727,3814,3888,3936,3970,4020,4103,4189,4274,4343],male:[1841,1893,1940,1986,2026,2050,2066,2094,2140,2185,2231,2265],female:[1719,1746,1787,1828,1862,1886,1904,1926,1963,2004,2043,2078],china:1065,korea:333,phil:513,viet:495,nepal:567,indo:121,other:537},
-    2024: {total:[4272,4346,4448,4540,4620,4672,4720,4780,4840,4879,4909,4909],male:[2218,2261,2315,2364,2405,2430,2455,2489,2521,2541,2554,2554],female:[2054,2085,2133,2176,2215,2242,2265,2291,2319,2338,2355,2355],china:1085,korea:315,phil:701,viet:583,nepal:696,indo:279,other:663},
-    2025: {total:[4930,4987,5062,5143,5213,5265,5315,5362,5402,5432,5463,5487],male:[2567,2600,2642,2686,2724,2752,2778,2803,2827,2847,2863,2874],female:[2363,2387,2420,2457,2489,2513,2537,2559,2575,2585,2600,2613],china:1100,korea:315,phil:787,viet:645,nepal:808,indo:383,other:856},
+  const FG={
+    2022:{total:[2776,2800,2877,2944,3001,3055,3098,3152,3216,3295,3430,3607],male:[1424,1437,1476,1509,1538,1574,1600,1631,1663,1703,1772,1860],female:[1352,1363,1401,1435,1463,1481,1498,1521,1553,1592,1658,1747],china:962,korea:305,phil:384,viet:469,nepal:344,indo:56,other:437},
+    2023:{total:[3560,3639,3727,3814,3888,3936,3970,4020,4103,4189,4274,4343],male:[1841,1893,1940,1986,2026,2050,2066,2094,2140,2185,2231,2265],female:[1719,1746,1787,1828,1862,1886,1904,1926,1963,2004,2043,2078],china:1065,korea:333,phil:513,viet:495,nepal:567,indo:121,other:537},
+    2024:{total:[4272,4346,4448,4540,4620,4672,4720,4780,4840,4879,4909,4909],male:[2218,2261,2315,2364,2405,2430,2455,2489,2521,2541,2554,2554],female:[2054,2085,2133,2176,2215,2242,2265,2291,2319,2338,2355,2355],china:1085,korea:315,phil:701,viet:583,nepal:696,indo:279,other:663},
+    2025:{total:[4930,4987,5062,5143,5213,5265,5315,5362,5402,5432,5463,5487],male:[2567,2600,2642,2686,2724,2752,2778,2803,2827,2847,2863,2874],female:[2363,2387,2420,2457,2489,2513,2537,2559,2575,2585,2600,2613],china:1100,korea:315,phil:787,viet:645,nepal:808,indo:383,other:856},
   };
-
-  const allLabels = [];
+  const allLabels=[];
   [2022,2023,2024,2025].forEach(y=>[1,2,3,4,5,6,7,8,9,10,11,12].forEach(m=>allLabels.push(`${y}/${m}`)));
   const totalLine=[],maleLine=[],femaleLine=[];
-  [2022,2023,2024,2025].forEach(y=>{
-    FG[y].total.forEach(v=>totalLine.push(v));
-    FG[y].male.forEach(v=>maleLine.push(v));
-    FG[y].female.forEach(v=>femaleLine.push(v));
-  });
-
-  const ctx6a = document.getElementById('chart6a').getContext('2d');
-  new Chart(ctx6a,{
-    type:'line',
-    data:{labels:allLabels,datasets:[
+  [2022,2023,2024,2025].forEach(y=>{FG[y].total.forEach(v=>totalLine.push(v));FG[y].male.forEach(v=>maleLine.push(v));FG[y].female.forEach(v=>femaleLine.push(v));});
+  new Chart(document.getElementById('chart6a').getContext('2d'),{
+    type:'line',data:{labels:allLabels,datasets:[
       {label:'外国人総人口',data:totalLine,borderColor:'#6C3483',borderWidth:2.5,pointRadius:0,pointHoverRadius:4,tension:.3,fill:false},
       {label:'男性',data:maleLine,borderColor:'#2C7BB6',borderWidth:1.5,pointRadius:0,pointHoverRadius:3,tension:.3,fill:false},
       {label:'女性',data:femaleLine,borderColor:'#C0392B',borderWidth:1.5,borderDash:[5,3],pointRadius:0,pointHoverRadius:3,tension:.3,fill:false},
     ]},
-    options:{
-      responsive:true,maintainAspectRatio:true,
-      interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false},tooltip:{
-        backgroundColor:'#fff',borderColor:'#E2E0D8',borderWidth:1,
-        titleColor:'#1A1916',bodyColor:'#6B6860',padding:12,
-        titleFont:{family:"'Noto Sans JP',sans-serif",size:12,weight:'500'},
-        bodyFont:{family:"'Noto Sans JP',sans-serif",size:12},
-        callbacks:{
-          label:item=>`${item.dataset.label}：${item.raw.toLocaleString()}人`,
-          labelColor:item=>({backgroundColor:item.dataset.borderColor,borderColor:item.dataset.borderColor}),
-        }
-      }},
-      scales:{
-        x:{ticks:{color:'#9E9C94',font:{size:10},maxRotation:0,maxTicksLimit:12},grid:{color:'#EDEDEA',lineWidth:.5}},
-        y:{ticks:{color:'#9E9C94',font:{size:11},callback:v=>v.toLocaleString()+'人'},grid:{color:'#EDEDEA',lineWidth:.5}}
-      }
-    },
+    options:{responsive:true,maintainAspectRatio:true,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:'#E2E0D8',borderWidth:1,titleColor:'#1A1916',bodyColor:'#6B6860',padding:12,titleFont:{family:"'Noto Sans JP',sans-serif",size:12,weight:'500'},bodyFont:{family:"'Noto Sans JP',sans-serif",size:12},callbacks:{label:item=>`${item.dataset.label}：${item.raw.toLocaleString()}人`,labelColor:item=>({backgroundColor:item.dataset.borderColor,borderColor:item.dataset.borderColor})}}},
+      scales:{x:{ticks:{color:'#9E9C94',font:{size:10},maxRotation:0,maxTicksLimit:12},grid:{color:'#EDEDEA',lineWidth:.5}},y:{ticks:{color:'#9E9C94',font:{size:11},callback:v=>v.toLocaleString()+'人'},grid:{color:'#EDEDEA',lineWidth:.5}}}},
     plugins:[yearDivPlugin]
   });
-
-  const ctx6b = document.getElementById('chart6b').getContext('2d');
-  const yrs = [2022,2023,2024,2025];
-  new Chart(ctx6b,{
-    type:'bar',
-    data:{
-      labels:yrs.map(y=>y+'年'),
-      datasets:[
-        {label:'中国',data:yrs.map(y=>FG[y].china),backgroundColor:'#E74C3C',stack:'s'},
-        {label:'韓国・朝鮮',data:yrs.map(y=>FG[y].korea),backgroundColor:'#E67E22',stack:'s'},
-        {label:'フィリピン',data:yrs.map(y=>FG[y].phil),backgroundColor:'#F1C40F',stack:'s'},
-        {label:'ベトナム',data:yrs.map(y=>FG[y].viet),backgroundColor:'#2ECC71',stack:'s'},
-        {label:'ネパール',data:yrs.map(y=>FG[y].nepal),backgroundColor:'#3498DB',stack:'s'},
-        {label:'インドネシア',data:yrs.map(y=>FG[y].indo),backgroundColor:'#9B59B6',stack:'s'},
-        {label:'その他',data:yrs.map(y=>FG[y].other),backgroundColor:'#95A5A6',stack:'s'},
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:true,
-      interaction:{mode:'index',intersect:false},
-      plugins:{legend:{display:false},tooltip:{
-        backgroundColor:'#fff',borderColor:'#E2E0D8',borderWidth:1,
-        titleColor:'#1A1916',bodyColor:'#6B6860',padding:12,
-        titleFont:{family:"'Noto Sans JP',sans-serif",size:12,weight:'500'},
-        bodyFont:{family:"'Noto Sans JP',sans-serif",size:12},
-        callbacks:{label:item=>`${item.dataset.label}：${item.raw.toLocaleString()}人`}
-      }},
-      scales:{
-        x:{ticks:{color:'#9E9C94',font:{size:12}},grid:{color:'#EDEDEA',lineWidth:.5}},
-        y:{ticks:{color:'#9E9C94',font:{size:11},callback:v=>v.toLocaleString()+'人'},grid:{color:'#EDEDEA',lineWidth:.5},stacked:true}
-      }
-    }
+  const yrs=[2022,2023,2024,2025];
+  new Chart(document.getElementById('chart6b').getContext('2d'),{
+    type:'bar',data:{labels:yrs.map(y=>y+'年'),datasets:[
+      {label:'中国',data:yrs.map(y=>FG[y].china),backgroundColor:'#E74C3C',stack:'s'},
+      {label:'韓国・朝鮮',data:yrs.map(y=>FG[y].korea),backgroundColor:'#E67E22',stack:'s'},
+      {label:'フィリピン',data:yrs.map(y=>FG[y].phil),backgroundColor:'#F1C40F',stack:'s'},
+      {label:'ベトナム',data:yrs.map(y=>FG[y].viet),backgroundColor:'#2ECC71',stack:'s'},
+      {label:'ネパール',data:yrs.map(y=>FG[y].nepal),backgroundColor:'#3498DB',stack:'s'},
+      {label:'インドネシア',data:yrs.map(y=>FG[y].indo),backgroundColor:'#9B59B6',stack:'s'},
+      {label:'その他',data:yrs.map(y=>FG[y].other),backgroundColor:'#95A5A6',stack:'s'},
+    ]},
+    options:{responsive:true,maintainAspectRatio:true,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:'#E2E0D8',borderWidth:1,titleColor:'#1A1916',bodyColor:'#6B6860',padding:12,titleFont:{family:"'Noto Sans JP',sans-serif",size:12,weight:'500'},bodyFont:{family:"'Noto Sans JP',sans-serif",size:12},callbacks:{label:item=>`${item.dataset.label}：${item.raw.toLocaleString()}人`}}},scales:{x:{ticks:{color:'#9E9C94',font:{size:12}},grid:{color:'#EDEDEA',lineWidth:.5}},y:{ticks:{color:'#9E9C94',font:{size:11},callback:v=>v.toLocaleString()+'人'},grid:{color:'#EDEDEA',lineWidth:.5},stacked:true}}}
   });
-
-  const tbl = document.getElementById('tbl6');
+  const tbl=document.getElementById('tbl6');
   let html='<thead><tr><th>年末</th><th>外国人総数</th><th>前年末比</th><th>中国</th><th>フィリピン</th><th>ネパール</th><th>ベトナム</th><th>インドネシア</th></tr></thead><tbody>';
   yrs.forEach((yr,i)=>{
     const t=FG[yr].total[11];
@@ -727,119 +582,45 @@ const baseOpts = {
   tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== チャート7 =====
+// チャート7
 (function(){
-  const AGE_LABELS = ['0-4歳','5-9歳','10-14歳','15-19歳','20-24歳','25-29歳','30-34歳',
-                      '35-39歳','40-44歳','45-49歳','50-54歳','55-59歳','60-64歳','65-69歳',
-                      '70-74歳','75-79歳','80-84歳','85-89歳','90歳以上'];
-
-  const EX = {
-    2022: [-105,-62,-94,-347,-535,-462,-275,-94,-98,-85,-27,-8,5,26,-23,-23,-38,-31,-32],
-    2023: [-252,-138,-70,-248,-480,-454,-287,-164,-84,-36,-66,22,37,-21,-4,-15,-9,-32,-15],
-    2024: [-81,-73,-38,-167,-442,-485,-210,-72,-44,-15,-58,-15,14,4,-14,-6,-22,-42,-28],
-    2025: [-15,-51,-11,-186,-372,-365,-118,-109,-76,-42,-29,-4,50,37,-26,-8,-4,-47,-13],
+  const AGE_LABELS=['0-4歳','5-9歳','10-14歳','15-19歳','20-24歳','25-29歳','30-34歳','35-39歳','40-44歳','45-49歳','50-54歳','55-59歳','60-64歳','65-69歳','70-74歳','75-79歳','80-84歳','85-89歳','90歳以上'];
+  const EX={
+    2022:[-105,-62,-94,-347,-535,-462,-275,-94,-98,-85,-27,-8,5,26,-23,-23,-38,-31,-32],
+    2023:[-252,-138,-70,-248,-480,-454,-287,-164,-84,-36,-66,22,37,-21,-4,-15,-9,-32,-15],
+    2024:[-81,-73,-38,-167,-442,-485,-210,-72,-44,-15,-58,-15,14,4,-14,-6,-22,-42,-28],
+    2025:[-15,-51,-11,-186,-372,-365,-118,-109,-76,-42,-29,-4,50,37,-26,-8,-4,-47,-13],
   };
-  const IN_2025  = [518,248,163,827,2102,1713,1092,758,522,471,492,432,304,192,129,118,96,76,79];
-  const OUT_2025 = [533,299,174,1013,2474,2078,1210,867,598,513,521,436,254,155,155,126,100,123,92];
-
-  const ctx7a = document.getElementById('chart7a').getContext('2d');
-  new Chart(ctx7a, {
-    type: 'line',
-    data: {
-      labels: AGE_LABELS,
-      datasets: [
-        {label:'2022年', data:EX[2022], borderColor:'rgba(150,150,150,0.4)', borderWidth:1.5, pointRadius:2, pointHoverRadius:4, tension:.3, fill:false},
-        {label:'2023年', data:EX[2023], borderColor:'rgba(150,150,150,0.65)', borderWidth:1.5, pointRadius:2, pointHoverRadius:4, tension:.3, fill:false},
-        {label:'2024年', data:EX[2024], borderColor:'#2C7BB6', borderWidth:2, pointRadius:3, pointHoverRadius:5, tension:.3, fill:false},
-        {label:'2025年', data:EX[2025], borderColor:'#C0392B', borderWidth:3.5, pointRadius:4, pointHoverRadius:6, tension:.3, fill:false},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      interaction:{mode:'index', intersect:false},
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
-          titleColor:'#1A1916', bodyColor:'#6B6860', padding:12,
-          titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
-          bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
-          callbacks:{
-            label: item => `${item.dataset.label}：${item.raw >= 0 ? '+' : '▲'}${Math.abs(item.raw).toLocaleString()}人`,
-            labelColor: item => ({backgroundColor: item.dataset.borderColor, borderColor: item.dataset.borderColor}),
-          }
-        }
-      },
-      scales:{
-        x:{ticks:{color:'#9E9C94', font:{family:"'Noto Sans JP',sans-serif", size:10}, maxRotation:45},
-           grid:{color:'#EDEDEA', lineWidth:.5}, border:{color:'#E2E0D8'}},
-        y:{ticks:{color:'#9E9C94', font:{family:"'Noto Sans JP',sans-serif", size:11},
-             callback: v => (v>=0?'+':'▲')+Math.abs(v).toLocaleString()},
-           grid:{color:'#EDEDEA', lineWidth:.5}, border:{color:'#E2E0D8', dash:[4,4]}}
-      }
-    }
+  const IN_2025=[518,248,163,827,2102,1713,1092,758,522,471,492,432,304,192,129,118,96,76,79];
+  const OUT_2025=[533,299,174,1013,2474,2078,1210,867,598,513,521,436,254,155,155,126,100,123,92];
+  new Chart(document.getElementById('chart7a').getContext('2d'),{
+    type:'line',data:{labels:AGE_LABELS,datasets:[
+      {label:'2022年',data:EX[2022],borderColor:'rgba(150,150,150,0.4)',borderWidth:1.5,pointRadius:2,pointHoverRadius:4,tension:.3,fill:false},
+      {label:'2023年',data:EX[2023],borderColor:'rgba(150,150,150,0.65)',borderWidth:1.5,pointRadius:2,pointHoverRadius:4,tension:.3,fill:false},
+      {label:'2024年',data:EX[2024],borderColor:'#2C7BB6',borderWidth:2,pointRadius:3,pointHoverRadius:5,tension:.3,fill:false},
+      {label:'2025年',data:EX[2025],borderColor:'#C0392B',borderWidth:3.5,pointRadius:4,pointHoverRadius:6,tension:.3,fill:false},
+    ]},options:{responsive:true,maintainAspectRatio:true,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:'#E2E0D8',borderWidth:1,titleColor:'#1A1916',bodyColor:'#6B6860',padding:12,titleFont:{family:"'Noto Sans JP',sans-serif",size:12,weight:'500'},bodyFont:{family:"'Noto Sans JP',sans-serif",size:12},callbacks:{label:item=>`${item.dataset.label}：${item.raw>=0?'+':'▲'}${Math.abs(item.raw).toLocaleString()}人`,labelColor:item=>({backgroundColor:item.dataset.borderColor,borderColor:item.dataset.borderColor})}}},scales:{x:{ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:10},maxRotation:45},grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8'}},y:{ticks:{color:'#9E9C94',font:{family:"'Noto Sans JP',sans-serif",size:11},callback:v=>(v>=0?'+':'▲')+Math.abs(v).toLocaleString()},grid:{color:'#EDEDEA',lineWidth:.5},border:{color:'#E2E0D8',dash:[4,4]}}}}
   });
-
-  const ctx7b = document.getElementById('chart7b').getContext('2d');
-  new Chart(ctx7b, {
-    type: 'bar',
-    data: {
-      labels: AGE_LABELS,
-      datasets: [
-        {label:'転入（2025）', data:IN_2025, backgroundColor:'rgba(44,123,182,0.7)', order:1},
-        {label:'転出（2025）', data:OUT_2025.map(v=>-v), backgroundColor:'rgba(192,57,43,0.5)', order:1},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      interaction:{mode:'index', intersect:false},
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          backgroundColor:'#fff', borderColor:'#E2E0D8', borderWidth:1,
-          titleColor:'#1A1916', bodyColor:'#6B6860', padding:12,
-          titleFont:{family:"'Noto Sans JP',sans-serif", size:12, weight:'500'},
-          bodyFont:{family:"'Noto Sans JP',sans-serif", size:12},
-          callbacks:{
-            label: item => {
-              const v = item.raw;
-              const label = item.dataset.label;
-              return `${label}：${Math.abs(v).toLocaleString()}人`;
-            }
-          }
-        }
-      },
-      scales:{
-        x:{ticks:{color:'#9E9C94', font:{size:10}, maxRotation:45},
-           grid:{color:'#EDEDEA', lineWidth:.5}},
-        y:{ticks:{color:'#9E9C94', font:{size:11},
-             callback: v => (v>=0?'+':'▲')+Math.abs(v).toLocaleString()},
-           grid:{color:'#EDEDEA', lineWidth:.5}}
-      }
-    }
+  new Chart(document.getElementById('chart7b').getContext('2d'),{
+    type:'bar',data:{labels:AGE_LABELS,datasets:[
+      {label:'転入（2025）',data:IN_2025,backgroundColor:'rgba(44,123,182,0.7)',order:1},
+      {label:'転出（2025）',data:OUT_2025.map(v=>-v),backgroundColor:'rgba(192,57,43,0.5)',order:1},
+    ]},options:{responsive:true,maintainAspectRatio:true,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:'#fff',borderColor:'#E2E0D8',borderWidth:1,titleColor:'#1A1916',bodyColor:'#6B6860',padding:12,titleFont:{family:"'Noto Sans JP',sans-serif",size:12,weight:'500'},bodyFont:{family:"'Noto Sans JP',sans-serif",size:12},callbacks:{label:item=>`${item.dataset.label}：${Math.abs(item.raw).toLocaleString()}人`}}},scales:{x:{ticks:{color:'#9E9C94',font:{size:10},maxRotation:45},grid:{color:'#EDEDEA',lineWidth:.5}},y:{ticks:{color:'#9E9C94',font:{size:11},callback:v=>(v>=0?'+':'▲')+Math.abs(v).toLocaleString()},grid:{color:'#EDEDEA',lineWidth:.5}}}}
   });
-
-  const tbl = document.getElementById('tbl7');
-  let html = '<thead><tr><th>年齢層</th><th>転入超過 2022</th><th>転入超過 2023</th><th>転入超過 2024</th><th>転入超過 2025</th><th>24→25変化</th></tr></thead><tbody>';
-  AGE_LABELS.forEach((age, i) => {
-    const v22=EX[2022][i], v23=EX[2023][i], v24=EX[2024][i], v25=EX[2025][i];
-    const diff = v25 - v24;
-    const fmtEx = v => v >= 0
-      ? `<span class="pos">+${v.toLocaleString()}人</span>`
-      : `<span class="neg">▲${Math.abs(v).toLocaleString()}人</span>`;
-    const fmtDiff = v => v > 0
-      ? `<span class="pos">+${v.toLocaleString()}人 ↑</span>`
-      : v < 0
-      ? `<span class="neg">▲${Math.abs(v).toLocaleString()}人 ↓</span>`
-      : '±0';
-    const rowBg = (age === '60-64歳' || age === '65-69歳') ? ' style="background:#F0FAF4"' : '';
-    html += `<tr${rowBg}><td>${age}</td><td>${fmtEx(v22)}</td><td>${fmtEx(v23)}</td><td>${fmtEx(v24)}</td><td>${fmtEx(v25)}</td><td>${fmtDiff(diff)}</td></tr>`;
+  const tbl=document.getElementById('tbl7');
+  let html='<thead><tr><th>年齢層</th><th>転入超過 2022</th><th>転入超過 2023</th><th>転入超過 2024</th><th>転入超過 2025</th><th>24→25変化</th></tr></thead><tbody>';
+  AGE_LABELS.forEach((age,i)=>{
+    const v22=EX[2022][i],v23=EX[2023][i],v24=EX[2024][i],v25=EX[2025][i];
+    const diff=v25-v24;
+    const fmtEx=v=>v>=0?`<span class="pos">+${v.toLocaleString()}人</span>`:`<span class="neg">▲${Math.abs(v).toLocaleString()}人</span>`;
+    const fmtDiff=v=>v>0?`<span class="pos">+${v.toLocaleString()}人 ↑</span>`:v<0?`<span class="neg">▲${Math.abs(v).toLocaleString()}人 ↓</span>`:'±0';
+    const rowBg=(age==='60-64歳'||age==='65-69歳')?' style="background:#F0FAF4"':'';
+    html+=`<tr${rowBg}><td>${age}</td><td>${fmtEx(v22)}</td><td>${fmtEx(v23)}</td><td>${fmtEx(v24)}</td><td>${fmtEx(v25)}</td><td>${fmtDiff(diff)}</td></tr>`;
   });
-  tbl.innerHTML = html + '</tbody>';
+  tbl.innerHTML=html+'</tbody>';
 })();
 
-// ===== タブ切り替え =====
-function switchTab(id, btn) {
+function switchTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
