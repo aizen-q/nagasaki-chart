@@ -387,6 +387,21 @@ AL.forEach((age,i)=>{const v22=EX[2022][i],v23=EX[2023][i],v24=EX[2024][i],v25=E
 tbl.innerHTML=html+'</tbody>';})();
 
 function switchTab(id,btn){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');}
+  (function(){
+      const hash = location.hash.replace('#','');
+      const validTabs = ['tab1','tab2','tab3','tab4','tab5','tab6','tab7','tab8'];
+      if (validTabs.includes(hash)) {
+            const btn = document.querySelector(`.tab-btn[onclick*="'${hash}'"]`);
+            if (btn) switchTab(hash, btn);
+      }
+      if (hash && document.referrer && document.referrer.includes('aizen2024.com')) {
+            const back = document.createElement('a');
+            back.href = document.referrer;
+            back.textContent = '← 記事に戻る';
+            back.style.cssText = 'position:fixed;top:12px;left:12px;z-index:999;background:#1B6E6C;color:#fff;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.2);';
+            document.body.appendChild(back);
+      }
+  })();
 </script>
 </body>
 </html>
